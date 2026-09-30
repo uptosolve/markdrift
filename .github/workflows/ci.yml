@@ -1,0 +1,40 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  test-and-build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 24
+          cache: npm
+
+      # puppeteer-core never downloads a browser, so this install needs no Chrome.
+      - run: npm ci
+
+      # Unit tests: motion math and the Firefox avcC fix. Plain Node, no browser.
+      - run: npm test
+
+      - run: npm run build
+
+      # Every file must fit the 25 MiB per-file limit of Cloudflare static assets.
+      - name: Check file sizes in dist/
+        run: |
+          big=$(find dist -type f -size +25M)
+          if [ -n "$big" ]; then echo "Over 25 MiB:"; echo "$big"; exit 1; fi
+          find dist -type f -printf '%s\t%p\n' | sort -rn | head -5
+
+      # npm run e2e is not run here. It needs Chrome and Firefox, ffmpeg/ffprobe and the
+      # generated test-media/ folder, so it stays a local check. Run it before merging
+      # anything that touches export.

@@ -1,0 +1,521 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-09-30T18:53:06.468Z",
+  "title": "Design System: MarkDrift",
+  "extensions": {
+    "colorMeta": {
+      "page": {
+        "role": "neutral",
+        "displayName": "Paper",
+        "canonical": "#ffffff",
+        "oklch": "oklch(100.0% 0.000 89.9)",
+        "tonalRamp": [
+          "#0b0b0b",
+          "#242424",
+          "#404040",
+          "#5d5d5d",
+          "#808080",
+          "#a4a4a4",
+          "#cacaca",
+          "#eeeeee"
+        ]
+      },
+      "band": {
+        "role": "neutral",
+        "displayName": "Band",
+        "canonical": "#f7f7f5",
+        "oklch": "oklch(97.6% 0.003 106.4)",
+        "tonalRamp": [
+          "#0b0b0b",
+          "#242423",
+          "#40403e",
+          "#5e5e5c",
+          "#80807e",
+          "#a5a5a3",
+          "#cacac9",
+          "#eeeeed"
+        ]
+      },
+      "field": {
+        "role": "neutral",
+        "displayName": "Field",
+        "canonical": "#f4f3ef",
+        "oklch": "oklch(96.4% 0.005 95.1)",
+        "tonalRamp": [
+          "#0b0b0a",
+          "#242423",
+          "#40403d",
+          "#5e5e5a",
+          "#81807d",
+          "#a5a5a1",
+          "#cbcac7",
+          "#efeeec"
+        ]
+      },
+      "ink": {
+        "role": "neutral",
+        "displayName": "Warm Ink",
+        "canonical": "#23231e",
+        "oklch": "oklch(25.4% 0.009 107.0)",
+        "tonalRamp": [
+          "#0b0b09",
+          "#242422",
+          "#40403b",
+          "#5e5e58",
+          "#81817a",
+          "#a5a59f",
+          "#cbcbc4",
+          "#efefeb"
+        ]
+      },
+      "soft": {
+        "role": "neutral",
+        "displayName": "Soft Ink",
+        "canonical": "#63635a",
+        "oklch": "oklch(49.7% 0.014 106.9)",
+        "tonalRamp": [
+          "#0b0b08",
+          "#242420",
+          "#404038",
+          "#5e5e55",
+          "#818177",
+          "#a5a59b",
+          "#cbcbc1",
+          "#efefea"
+        ]
+      },
+      "line": {
+        "role": "neutral",
+        "displayName": "Line",
+        "canonical": "#e2e1db",
+        "oklch": "oklch(90.9% 0.008 98.9)",
+        "tonalRamp": [
+          "#0c0b09",
+          "#242422",
+          "#41403b",
+          "#5f5e59",
+          "#81807b",
+          "#a6a59f",
+          "#cccbc5",
+          "#efeeeb"
+        ]
+      },
+      "hair": {
+        "role": "neutral",
+        "displayName": "Hair",
+        "canonical": "#ebeae4",
+        "oklch": "oklch(93.6% 0.008 98.9)",
+        "tonalRamp": [
+          "#0c0b09",
+          "#242422",
+          "#41403b",
+          "#5f5e59",
+          "#81807b",
+          "#a6a59f",
+          "#cccbc5",
+          "#efeeeb"
+        ]
+      },
+      "edge": {
+        "role": "neutral",
+        "displayName": "Edge",
+        "canonical": "#8c8b82",
+        "oklch": "oklch(63.5% 0.013 101.6)",
+        "tonalRamp": [
+          "#0c0b08",
+          "#252421",
+          "#414038",
+          "#5f5e56",
+          "#828178",
+          "#a6a59c",
+          "#cccbc1",
+          "#efefea"
+        ]
+      },
+      "accent": {
+        "role": "primary",
+        "displayName": "Signal Yellow",
+        "canonical": "#fcec45",
+        "oklch": "oklch(92.8% 0.176 103.7)",
+        "tonalRamp": [
+          "#130a00",
+          "#2c2400",
+          "#523e00",
+          "#715e00",
+          "#948200",
+          "#b9a800",
+          "#dfcf08",
+          "#f8f2ad"
+        ]
+      },
+      "accent-hover": {
+        "role": "primary",
+        "displayName": "Pressed Yellow",
+        "canonical": "#f5e02c",
+        "oklch": "oklch(89.7% 0.179 102.1)",
+        "tonalRamp": [
+          "#140900",
+          "#2d2400",
+          "#553d00",
+          "#735d00",
+          "#978100",
+          "#bca600",
+          "#e2cd00",
+          "#faf1ab"
+        ]
+      },
+      "accent-wash": {
+        "role": "primary",
+        "displayName": "Yellow Wash",
+        "canonical": "#fffbdc",
+        "oklch": "oklch(98.3% 0.041 101.1)",
+        "tonalRamp": [
+          "#0d0b03",
+          "#262419",
+          "#444127",
+          "#625f44",
+          "#858166",
+          "#aaa689",
+          "#d0ccae",
+          "#f1efe0"
+        ]
+      },
+      "stage": {
+        "role": "neutral",
+        "displayName": "Plate Ink",
+        "canonical": "#23231e",
+        "oklch": "oklch(25.4% 0.009 107.0)",
+        "tonalRamp": [
+          "#0b0b09",
+          "#242422",
+          "#40403b",
+          "#5e5e58",
+          "#81817a",
+          "#a5a59f",
+          "#cbcbc4",
+          "#efefeb"
+        ]
+      },
+      "stage-raised": {
+        "role": "neutral",
+        "displayName": "Raised Plate",
+        "canonical": "#2e2e28",
+        "oklch": "oklch(29.9% 0.011 107.0)",
+        "tonalRamp": [
+          "#0b0b09",
+          "#242421",
+          "#40403a",
+          "#5e5e57",
+          "#81817a",
+          "#a5a59e",
+          "#cbcbc3",
+          "#efefeb"
+        ]
+      },
+      "on-stage": {
+        "role": "neutral",
+        "displayName": "Plate Text",
+        "canonical": "#eae8e0",
+        "oklch": "oklch(93.0% 0.011 95.2)",
+        "tonalRamp": [
+          "#0c0b09",
+          "#252421",
+          "#414039",
+          "#5f5e57",
+          "#828079",
+          "#a6a59d",
+          "#cccbc3",
+          "#efeeea"
+        ]
+      },
+      "on-stage-soft": {
+        "role": "neutral",
+        "displayName": "Plate Soft",
+        "canonical": "#c3c2b8",
+        "oklch": "oklch(81.2% 0.014 102.1)",
+        "tonalRamp": [
+          "#0c0b08",
+          "#252420",
+          "#414038",
+          "#5f5e55",
+          "#828177",
+          "#a6a59b",
+          "#cccbc1",
+          "#efefe9"
+        ]
+      },
+      "ok": {
+        "role": "status",
+        "displayName": "Saved Green",
+        "canonical": "#1d7a48",
+        "oklch": "oklch(51.4% 0.116 154.6)",
+        "tonalRamp": [
+          "#001102",
+          "#062c17",
+          "#005021",
+          "#0b703f",
+          "#3d9460",
+          "#64ba84",
+          "#8be1a9",
+          "#d1fbde"
+        ]
+      },
+      "err": {
+        "role": "status",
+        "displayName": "Stop Red",
+        "canonical": "#b3261e",
+        "oklch": "oklch(50.1% 0.178 28.7)",
+        "tonalRamp": [
+          "#260000",
+          "#460b07",
+          "#860000",
+          "#ac1d17",
+          "#d64a3d",
+          "#ff7161",
+          "#ff9886",
+          "#ffd9cd"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "wordmark": {
+        "displayName": "Wordmark",
+        "purpose": "Product name in the top bar and the drop-veil message only."
+      },
+      "title": {
+        "displayName": "Title",
+        "purpose": "Step headings, the cart heading, the big checkout pill."
+      },
+      "body-large": {
+        "displayName": "Body Large",
+        "purpose": "Typed text in fields and selects; the More options summary at 600."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "Base size: file names, style names, control text. Tabular figures."
+      },
+      "label": {
+        "displayName": "Label",
+        "purpose": "Field labels, tabs, small pills, the order summary, footer copy."
+      },
+      "caption": {
+        "displayName": "Caption",
+        "purpose": "Metadata, row status at 600, style descriptions, hints."
+      },
+      "tag": {
+        "displayName": "Tag",
+        "purpose": "The Recommended tag only."
+      }
+    },
+    "shadows": [
+      {
+        "name": "pill-lift",
+        "value": "0 1px 2px rgba(35,35,30,.14)",
+        "purpose": "Selected segment inside a Field track (tabs use .12)."
+      },
+      {
+        "name": "bottom-sheet",
+        "value": "0 -6px 20px rgba(35,35,30,.14)",
+        "purpose": "Pinned phone checkout."
+      },
+      {
+        "name": "toast",
+        "value": "0 8px 24px rgba(0,0,0,.18)",
+        "purpose": "Status toast."
+      },
+      {
+        "name": "select-ring",
+        "value": "0 0 0 2px #ffffff, 0 0 0 4px #23231e",
+        "purpose": "Selected swatch and photo tile. A ring, not elevation."
+      },
+      {
+        "name": "focus-halo",
+        "value": "0 0 0 3px rgba(252,236,69,.7)",
+        "purpose": "Text field and select focus, with the border turned ink."
+      },
+      {
+        "name": "focus-ring",
+        "value": "outline: 3px solid #23231e; outline-offset: 3px",
+        "purpose": "Keyboard focus everywhere; the outline turns Signal Yellow on the plate. An outline, not a shadow."
+      }
+    ],
+    "motion": [
+      {
+        "name": "ease",
+        "value": "cubic-bezier(.16,1,.3,1)",
+        "purpose": "All state transitions, usually .15s; chevron rotate .2s; press .1s."
+      },
+      {
+        "name": "diagram-loops",
+        "value": "bounce 2.3s / 1.55s alternate, jump 4.8s, tile 3s linear",
+        "purpose": "Style-row path diagrams. Off under prefers-reduced-motion, along with all transitions."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "stack",
+        "value": "960px",
+        "purpose": "One column, sticky full-bleed stage, checkout pinned to the bottom once files exist."
+      },
+      {
+        "name": "narrow",
+        "value": "520px",
+        "purpose": "Top bar wraps; the device note takes its own line."
+      }
+    ],
+    "icons": {
+      "grid": "24x24",
+      "stroke": 1.75,
+      "fill": "none",
+      "caps": "round",
+      "joins": "round",
+      "color": "currentColor",
+      "count": 15,
+      "source": "src/icons.js"
+    },
+    "knownGaps": [
+      "Unselected style-diagram marks use a hard-coded #9d9c92, outside the token set.",
+      "The custom-colour swatch is a hard-coded conic gradient of six off-palette hues (#ff5b5b, #ffd24a, #5bd97a, #4ab8ff, #9b6bff, #ff5bd1).",
+      "Other literals outside the token set: scrollbar thumb #c8c7bf, plate hovers #3b3b34 and #45453d, disabled pill text #8c8b82 (Edge written as a literal).",
+      "A --shadow token is declared in :root but never used."
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Pill",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "The one action. Full-width yellow pill at the foot of the order panel.",
+      "html": "<button class=\"ds-btn-primary\">Watermark 4 videos</button>",
+      "css": ".ds-btn-primary{display:inline-flex;align-items:center;justify-content:center;gap:8px;width:320px;border:0;border-radius:99px;padding:14px 18px;font:600 1rem/1.5 var(--font);background:var(--accent);color:#23231e;cursor:pointer;transition:background .15s cubic-bezier(.16,1,.3,1),transform .1s cubic-bezier(.16,1,.3,1)}.ds-btn-primary:hover{background:var(--accent-hover)}.ds-btn-primary:active{transform:translateY(1px)}.ds-btn-primary:focus-visible{outline:3px solid var(--focus);outline-offset:3px}"
+    },
+    {
+      "name": "Idle Primary Pill",
+      "kind": "button",
+      "refersTo": "button-primary-idle",
+      "description": "The checkout pill before any files exist: ink outline on paper.",
+      "html": "<button class=\"ds-btn-idle\">Choose files to start</button>",
+      "css": ".ds-btn-idle{display:inline-flex;align-items:center;justify-content:center;width:320px;border:0;border-radius:99px;padding:14px 18px;font:600 1rem/1.5 var(--font);background:var(--page);color:var(--ink);box-shadow:inset 0 0 0 1.5px var(--ink);cursor:pointer;transition:background .15s cubic-bezier(.16,1,.3,1)}.ds-btn-idle:hover{background:var(--field)}.ds-btn-idle:focus-visible{outline:3px solid var(--focus);outline-offset:3px}"
+    },
+    {
+      "name": "Ghost Pill",
+      "kind": "button",
+      "refersTo": "button-ghost",
+      "description": "Secondary actions: Replace, Add more, Shuffle, Stop.",
+      "html": "<button class=\"ds-btn-ghost\"><svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M12 5v14\"/><path d=\"M5 12h14\"/></svg>Add more</button>",
+      "css": ".ds-btn-ghost{display:inline-flex;align-items:center;gap:6px;border:0;border-radius:99px;padding:6px 12px;font:500 0.8125rem/1.5 var(--font);background:transparent;color:var(--ink);box-shadow:inset 0 0 0 1px var(--edge);cursor:pointer;transition:background .15s cubic-bezier(.16,1,.3,1)}.ds-btn-ghost:hover{background:var(--field)}.ds-btn-ghost:focus-visible{outline:3px solid var(--focus);outline-offset:3px}"
+    },
+    {
+      "name": "Text Field",
+      "kind": "input",
+      "refersTo": "input-text",
+      "description": "44px field with an Edge border and a yellow focus halo.",
+      "html": "<input class=\"ds-input\" type=\"text\" placeholder=\"Your name or @handle\">",
+      "css": ".ds-input{width:280px;height:44px;padding:0 14px;border:1px solid var(--edge);border-radius:10px;background:var(--page);color:var(--ink);font:400 0.9375rem var(--font);outline:none;transition:box-shadow .15s cubic-bezier(.16,1,.3,1),border-color .15s cubic-bezier(.16,1,.3,1)}.ds-input::placeholder{color:var(--soft)}.ds-input:focus{border-color:var(--ink);box-shadow:0 0 0 3px rgba(252,236,69,.7)}"
+    },
+    {
+      "name": "Segmented Control",
+      "kind": "chip",
+      "refersTo": "segmented",
+      "description": "Field track with a lifted paper pill for the current choice.",
+      "html": "<div class=\"ds-seg\"><button class=\"ds-seg-on\">Text</button><button>Logo</button></div>",
+      "css": ".ds-seg{display:inline-grid;grid-template-columns:1fr 1fr;width:280px;background:var(--field);border-radius:99px;padding:3px}.ds-seg button{border:0;background:transparent;padding:7px 8px;border-radius:99px;font:500 0.875rem var(--font);color:var(--soft);cursor:pointer;transition:background .15s cubic-bezier(.16,1,.3,1),color .15s cubic-bezier(.16,1,.3,1)}.ds-seg button:hover{color:var(--ink)}.ds-seg .ds-seg-on{background:var(--page);color:var(--ink);box-shadow:0 1px 2px rgba(35,35,30,.14)}.ds-seg button:focus-visible{outline:3px solid var(--focus);outline-offset:3px}"
+    },
+    {
+      "name": "Style Row",
+      "kind": "custom",
+      "refersTo": "style-row-selected",
+      "description": "Signature choice row with a path diagram; the selected row shows the wash, ink ring and its description.",
+      "html": "<div class=\"ds-styles\"><label class=\"ds-style ds-style-on\"><svg viewBox=\"0 0 48 30\"><rect x=\".5\" y=\".5\" width=\"47\" height=\"29\" rx=\"4\" fill=\"#23231e\"/><rect class=\"ds-mk\" x=\"3\" y=\"3\" width=\"12\" height=\"5\" rx=\"1.5\"/></svg><span><b>Hardest to remove <em>Recommended</em></b><small>Faint marks across the frame, plus one clear mark that moves.</small></span></label><label class=\"ds-style\"><svg viewBox=\"0 0 48 30\"><rect x=\".5\" y=\".5\" width=\"47\" height=\"29\" rx=\"4\" fill=\"#23231e\"/><rect class=\"ds-mk\" x=\"32\" y=\"21\" width=\"12\" height=\"5\" rx=\"1.5\"/></svg><span><b>Corner</b></span></label></div>",
+      "css": ".ds-styles{display:flex;flex-direction:column;gap:5px;width:340px;font:400 0.875rem/1.5 var(--font);color:var(--ink)}.ds-style{display:flex;align-items:center;gap:12px;min-height:44px;padding:6px 12px;border:1px solid var(--line);border-radius:10px;cursor:pointer;transition:background .15s cubic-bezier(.16,1,.3,1),border-color .15s cubic-bezier(.16,1,.3,1)}.ds-style:hover{background:var(--band)}.ds-style svg{width:52px;height:33px;flex:none}.ds-mk{fill:#9d9c92}.ds-style span{display:flex;flex-direction:column}.ds-style b{font-weight:600;display:flex;gap:8px;align-items:center}.ds-style em{font-style:normal;font-size:.6875rem;font-weight:600;padding:1px 8px;border-radius:99px;background:var(--ink);color:var(--page)}.ds-style small{color:var(--soft);font-size:.75rem;line-height:1.4}.ds-style-on,.ds-style-on:hover{border-color:var(--ink);background:var(--accent-wash);box-shadow:inset 0 0 0 1px var(--ink)}.ds-style-on .ds-mk{fill:var(--accent)}"
+    },
+    {
+      "name": "Step Heading",
+      "kind": "custom",
+      "refersTo": "step-number",
+      "description": "Order-panel step: an ink numeral pill, then a Title heading.",
+      "html": "<h2 class=\"ds-step\"><span>1</span>Your watermark</h2>",
+      "css": ".ds-step{display:flex;align-items:center;gap:10px;margin:0;font:600 1rem var(--font);letter-spacing:-.01em;color:var(--ink)}.ds-step span{width:22px;height:22px;border-radius:99px;background:var(--ink);color:var(--page);display:grid;place-items:center;font-size:.75rem;font-weight:600}"
+    },
+    {
+      "name": "Checkout Footer",
+      "kind": "card",
+      "refersTo": "checkout",
+      "description": "Band footer of the order panel: summary and progress with a yellow fill and ink edge.",
+      "html": "<div class=\"ds-checkout\"><p>4 videos (0:31) · Hardest to remove · saves to a folder you pick</p><div class=\"ds-track\"><i></i></div><div class=\"ds-row\">2 of 4 saved</div></div>",
+      "css": ".ds-checkout{width:360px;padding:12px 20px 16px;background:var(--band);border:1px solid var(--line);border-radius:0 0 18px 18px;display:flex;flex-direction:column;gap:10px;font:400 0.8125rem/1.45 var(--font);color:var(--ink)}.ds-checkout p{margin:0}.ds-track{height:8px;background:var(--hair);border-radius:99px;overflow:hidden;box-shadow:inset 0 0 0 1px var(--line)}.ds-track i{display:block;height:100%;width:55%;background:var(--accent);border-radius:99px;box-shadow:inset 0 0 0 1px rgba(35,35,30,.35)}.ds-row{color:var(--soft)}"
+    },
+    {
+      "name": "Cart Row",
+      "kind": "custom",
+      "refersTo": "queue-item-current",
+      "description": "File row: a filled, centre-cropped plate thumbnail, name, metadata, status and the row progress bar.",
+      "html": "<div class=\"ds-q ds-q-on\"><span class=\"ds-th\"></span><span class=\"ds-tx\"><b>landscape-1080p.mp4</b><small>1920×1080 landscape · 0:12</small><span class=\"ds-qbar\"><i></i></span></span><span class=\"ds-wk\">Working</span></div>",
+      "css": ".ds-q{display:flex;align-items:center;gap:12px;width:420px;padding:6px 8px;border-radius:10px;font:400 0.875rem/1.5 var(--font);color:var(--ink);transition:background .15s cubic-bezier(.16,1,.3,1)}.ds-q:hover{background:var(--band)}.ds-q-on,.ds-q-on:hover{background:var(--field);box-shadow:inset 0 0 0 1px var(--edge)}.ds-th{width:72px;height:44px;border-radius:6px;background:var(--stage);flex:none}.ds-tx{display:flex;flex-direction:column;flex:1}.ds-tx b{font-weight:500}.ds-tx small{color:var(--soft);font-size:.75rem}.ds-ok{color:var(--ok);font-size:.75rem;font-weight:600}.ds-wk{color:var(--ink);font-size:.75rem;font-weight:600}.ds-qbar{display:block;height:4px;background:var(--hair);border-radius:99px;overflow:hidden;margin-top:5px}.ds-qbar i{display:block;height:100%;width:40%;background:var(--accent);border-radius:99px;box-shadow:inset 0 0 0 1px rgba(35,35,30,.35)}"
+    },
+    {
+      "name": "Top Bar",
+      "kind": "nav",
+      "refersTo": "wordmark",
+      "description": "Wordmark, by UptoSolve, and the device line with a lock icon.",
+      "html": "<header class=\"ds-bar\"><span class=\"ds-brand\"><svg viewBox=\"0 0 28 20\" width=\"28\" height=\"20\"><rect x=\"1\" y=\"1\" width=\"26\" height=\"18\" rx=\"4\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\"/><rect x=\"15\" y=\"11\" width=\"9\" height=\"5\" rx=\"2\" fill=\"#fcec45\" stroke=\"#23231e\" stroke-width=\"1.2\"/></svg><b>MarkDrift</b><small>by UptoSolve</small></span><p><svg width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.75\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><rect x=\"5\" y=\"10.5\" width=\"14\" height=\"9.5\" rx=\"2\"/><path d=\"M8 10.5V8a4 4 0 0 1 8 0v2.5\"/><path d=\"M12 14.25v2\"/></svg>Runs on this device. Nothing is uploaded.</p></header>",
+      "css": ".ds-bar{display:flex;align-items:center;gap:16px;width:640px;padding:14px 28px;background:var(--page);font-family:var(--font);color:var(--ink)}.ds-brand{display:flex;align-items:center;gap:10px}.ds-brand b{font-size:1.25rem;font-weight:700;letter-spacing:-.02em}.ds-brand small{color:var(--soft);font-size:.8125rem}.ds-bar p{margin:0 0 0 auto;display:flex;align-items:center;gap:8px;color:var(--soft);font-size:.8125rem}"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Checkout Counter",
+    "overview": "MarkDrift is a tool inside the UptoSolve world, and it behaves like a short checkout rather than an editor. Files sit in a cart on the left, under an ink preview plate; a single order panel on the right lists what will happen, and one yellow pill at its foot does it. The page is paper white and warm ink. Density is that of a form, not a canvas: small, steady type, 44px touch rows, and hairline dividers between numbered steps.\n\nThe ink plate is the one dark object on the page. It holds the live preview, so every video, frame and thumbnail sits on the same warm near-black rather than on white. Everything else is flat paper with 1px lines. Yellow is kept for the action and for whatever is currently chosen, so the eye always knows the next step and the current choice.\n\nThe system is light only. The brand has no dark scheme, and the ink plate is a surface, not a theme.",
+    "keyCharacteristics": [
+      "Paper page, ink plate, one yellow.",
+      "One family (Google Sans Flex, self-hosted, variable 400 to 700) with tabular figures everywhere.",
+      "Flat containers drawn with 1px lines; depth only on selected pills and floating overlays.",
+      "Three corner families: 10px controls, 18px containers, 99px pills.",
+      "Authored single-weight line icons on a 24 grid, 1.75 stroke, round caps.",
+      "Native controls (range, checkbox, select, color) tinted from the palette instead of rebuilt."
+    ],
+    "rules": [
+      {
+        "name": "The One Yellow Rule",
+        "body": "Yellow means \"do this\" or \"this is chosen\". If an element is neither the action nor the current selection, it is not yellow.",
+        "section": "colors"
+      },
+      {
+        "name": "The Plate Rule",
+        "body": "Media always sits on Plate Ink, never on paper. Thumbnails, previews and diagrams share the same dark ground so mixed shapes read as one set.",
+        "section": "colors"
+      },
+      {
+        "name": "The Tabular Rule",
+        "body": "Figures are tabular on the whole body. Durations, counts, percentages and progress never jitter as they change.",
+        "section": "typography"
+      },
+      {
+        "name": "The Weight-Not-Size Rule",
+        "body": "New emphasis goes up a weight or from soft to ink before it goes up a size. The type ramp tops out at 1.25rem.",
+        "section": "typography"
+      },
+      {
+        "name": "The Lines-Not-Shadows Rule",
+        "body": "Cards and panels are separated by 1px lines and tone, never by drop shadows at rest.",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "Do keep yellow to the action and the current selection (The One Yellow Rule), with ink text on it.",
+      "Do put every piece of media on Plate Ink, including thumbnails and diagrams.",
+      "Do separate containers with 1px Line borders and steps with Hair dividers.",
+      "Do keep the checkout pill in its ink-outline idle state until there is something to process.",
+      "Do use native form controls tinted with the palette, at 44px touch height.",
+      "Do draw new icons in the authored set's style: 24 grid, no fill, currentColor, 1.75 stroke, round caps and joins.",
+      "Do stop all diagram and demo motion under prefers-reduced-motion."
+    ],
+    "donts": [
+      "Don't add a dark theme; the page is light only and the plate is the only dark surface.",
+      "Don't add a second UI typeface. The serif, mono and heavy options are watermark content drawn on the canvas, not interface type.",
+      "Don't put drop shadows on cards or panels at rest.",
+      "Don't set text in yellow or use yellow as a status colour.",
+      "Don't use emoji or font glyphs as icons.",
+      "Don't make every setting an equal-weight slider; defaults live up front and the rest sits under More options."
+    ]
+  }
+}

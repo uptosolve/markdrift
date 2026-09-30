@@ -1,0 +1,275 @@
+<!doctype html>
+<!--
+  The app markup. This file is the template for the site, not a page of it:
+  scripts/build-pages.mjs copies the header, the tool (<main class="shop">), the drop veil and
+  toast, and the footer note from here into every tool page under site/. Its <head> is not used;
+  each page gets its own. Edit the tool here, then run npm run dev or npm run build.
+-->
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>MarkDrift: free moving watermark for videos and photos</title>
+  <meta name="description" content="Put your name or logo on many videos and photos at once, free. Moving, tiled or corner watermarks. Runs in your browser: no upload, no sign-up, no watermark of ours." />
+  <meta name="theme-color" content="#FFFFFF" />
+  <meta name="color-scheme" content="light" />
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <link rel="preload" href="/fonts/google-sans-flex-latin.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="stylesheet" href="/src/fonts.css" />
+  <link rel="stylesheet" href="/src/style.css" />
+</head>
+<body>
+  <header class="bar">
+    <a class="brand" href="/" aria-label="MarkDrift by UptoSolve, home">
+      <svg class="brand-mark" viewBox="0 0 28 20" aria-hidden="true" focusable="false"><rect x="1" y="1" width="26" height="18" rx="4" fill="none" stroke="currentColor" stroke-width="2"/><rect class="brand-dot" x="15" y="11" width="9" height="5" rx="2"/></svg>
+      <span class="brand-name">MarkDrift</span>
+      <span class="brand-by">by UptoSolve</span>
+    </a>
+    <p class="bar-note"><span data-icon="lock"></span>Runs on this device. Nothing is uploaded.</p>
+  </header>
+
+  <main class="shop">
+    <section class="cart" aria-label="Your files">
+      <div class="stage">
+        <label class="drop" id="drop">
+          <input type="file" id="fileInput" class="vh" accept="video/*,image/*,.mkv,.mov" multiple aria-label="Choose videos or photos" />
+          <canvas id="demo" aria-hidden="true"></canvas>
+          <span class="drop-cta">
+            <span class="btn primary"><span data-icon="upload"></span><span id="dropTitle">Choose videos or photos</span></span>
+            <span class="drop-hint" id="dropHint">or drop them anywhere on this page</span>
+          </span>
+        </label>
+
+        <div class="preview" id="preview" hidden>
+          <div class="frame-wrap">
+            <div class="frame" id="frame">
+              <video id="video" playsinline muted loop preload="auto"></video>
+              <canvas id="base" hidden></canvas>
+              <canvas id="overlay"></canvas>
+            </div>
+          </div>
+          <div class="player" id="player">
+            <button class="icon-btn" id="playBtn" type="button" aria-label="Play" title="Play (Space)"><span id="playIcon" data-icon="play"></span></button>
+            <input type="range" id="scrub" min="0" max="1000" value="0" step="1" aria-label="Seek" />
+            <span class="time" id="time">0:00 / 0:00</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="caption" id="caption">
+        <div class="caption-text">
+          <strong id="fileName">Preview</strong>
+          <span id="fileMeta">Your mark on a landscape and a vertical frame. Change the settings to see it update.</span>
+        </div>
+        <button class="btn ghost small" id="replaceBtn" type="button" hidden>Replace</button>
+      </div>
+      <p class="note" id="stageNote" hidden></p>
+
+      <div class="cart-list" id="cartList" hidden>
+        <div class="cart-head">
+          <h2 id="cartTitle">Your files</h2>
+          <div class="switch" role="tablist" aria-label="Show videos or photos">
+            <button role="tab" class="tab" id="tab-video" aria-selected="true" data-tab="video">Videos</button>
+            <button role="tab" class="tab" id="tab-image" aria-selected="false" data-tab="image">Photos</button>
+          </div>
+          <button class="btn ghost small" type="button" id="addVideosBtn"><span data-icon="plus"></span>Add more</button>
+        </div>
+        <p class="cart-sum" id="queueSummary"></p>
+        <div id="queueWrap" hidden>
+          <ul class="queue" id="queue" aria-label="Videos to watermark"></ul>
+        </div>
+        <div class="thumbs" id="thumbs" hidden></div>
+      </div>
+    </section>
+
+    <aside class="order" aria-label="Watermark settings">
+      <div class="order-body">
+        <p class="browser-note" id="browserNote" hidden><span data-icon="alert"></span><span>This browser can't make videos. Photos still work. For videos, use Chrome, Edge or Safari 17 or newer.</span></p>
+
+        <section class="step" aria-labelledby="s1">
+          <h2 id="s1"><span class="n">1</span>Your watermark</h2>
+          <div class="seg" role="radiogroup" aria-label="Watermark type">
+            <label><input type="radio" name="kind" value="text" data-key="kind" /><span>Text</span></label>
+            <label><input type="radio" name="kind" value="image" data-key="kind" /><span>Logo</span></label>
+          </div>
+          <div class="stack textrow" data-kind="text">
+            <label class="field">
+              <span class="vh">Watermark text</span>
+              <input type="text" data-key="text" maxlength="80" placeholder="Your name or @handle" autocomplete="off" />
+            </label>
+            <div class="swatches" role="radiogroup" aria-label="Text colour">
+              <label title="White"><input type="radio" name="swatch" value="#ffffff" /><span style="--c:#ffffff"></span></label>
+              <label title="Black"><input type="radio" name="swatch" value="#23231e" /><span style="--c:#23231e"></span></label>
+              <label title="Yellow"><input type="radio" name="swatch" value="#fcec45" /><span style="--c:#fcec45"></span></label>
+              <label class="custom" title="Pick any colour"><input type="color" data-key="color" aria-label="Pick any colour" /><span></span></label>
+            </div>
+          </div>
+          <div class="stack" data-kind="image">
+            <label class="logo-pick" id="logoPick">
+              <input type="file" id="logoInput" class="vh" accept="image/png,image/svg+xml,image/webp,image/jpeg" aria-label="Choose a logo" />
+              <span class="logo-thumb" id="logoThumb" aria-hidden="true"></span>
+              <span class="logo-text"><b id="logoLabel">Choose your logo</b><small>A PNG with a see-through background works best. We remember it for next time.</small></span>
+            </label>
+            <label class="check"><input type="checkbox" data-key="whiten" /><span>Make it white</span></label>
+          </div>
+        </section>
+
+        <section class="step" aria-labelledby="s2">
+          <h2 id="s2"><span class="n">2</span>Style</h2>
+          <div class="styles" role="radiogroup" aria-label="Style">
+            <label class="style"><input type="radio" name="mode" value="combo" data-key="mode" />
+              <span class="style-row">
+                <svg viewBox="0 0 48 30" aria-hidden="true"><rect class="mf" x=".5" y=".5" width="47" height="29" rx="4"/><g class="faint"><rect class="mk" x="4" y="5" width="8" height="2" rx="1"/><rect class="mk" x="20" y="5" width="8" height="2" rx="1"/><rect class="mk" x="36" y="5" width="8" height="2" rx="1"/><rect class="mk" x="12" y="14" width="8" height="2" rx="1"/><rect class="mk" x="28" y="14" width="8" height="2" rx="1"/><rect class="mk" x="4" y="23" width="8" height="2" rx="1"/><rect class="mk" x="20" y="23" width="8" height="2" rx="1"/><rect class="mk" x="36" y="23" width="8" height="2" rx="1"/></g><g class="bx"><rect class="mk by" x="3" y="3" width="12" height="5" rx="1.5"/></g></svg>
+                <span class="style-text"><b>Hardest to remove <em>Recommended</em></b><small>Faint marks across the frame, plus one clear mark that moves.</small></span>
+              </span></label>
+            <label class="style"><input type="radio" name="mode" value="bounce" data-key="mode" />
+              <span class="style-row">
+                <svg viewBox="0 0 48 30" aria-hidden="true"><rect class="mf" x=".5" y=".5" width="47" height="29" rx="4"/><g class="bx"><rect class="mk by" x="3" y="3" width="12" height="5" rx="1.5"/></g></svg>
+                <span class="style-text"><b>Moving</b><small>Glides around and bounces off the edges.</small></span>
+              </span></label>
+            <label class="style"><input type="radio" name="mode" value="tile" data-key="mode" />
+              <span class="style-row">
+                <svg viewBox="0 0 48 30" aria-hidden="true"><rect class="mf" x=".5" y=".5" width="47" height="29" rx="4"/><g class="tl"><rect class="mk" x="-4" y="4" width="9" height="3" rx="1"/><rect class="mk" x="14" y="4" width="9" height="3" rx="1"/><rect class="mk" x="32" y="4" width="9" height="3" rx="1"/><rect class="mk" x="5" y="13" width="9" height="3" rx="1"/><rect class="mk" x="23" y="13" width="9" height="3" rx="1"/><rect class="mk" x="41" y="13" width="9" height="3" rx="1"/><rect class="mk" x="-4" y="22" width="9" height="3" rx="1"/><rect class="mk" x="14" y="22" width="9" height="3" rx="1"/><rect class="mk" x="32" y="22" width="9" height="3" rx="1"/></g></svg>
+                <span class="style-text"><b>Tiled</b><small>Repeats across the whole frame, so cropping can't cut it out.</small></span>
+              </span></label>
+            <label class="style"><input type="radio" name="mode" value="jump" data-key="mode" />
+              <span class="style-row">
+                <svg viewBox="0 0 48 30" aria-hidden="true"><rect class="mf" x=".5" y=".5" width="47" height="29" rx="4"/><rect class="mk jp" x="3" y="3" width="12" height="5" rx="1.5"/></svg>
+                <span class="style-text"><b>Jumping</b><small>Pops up somewhere new every few seconds.</small></span>
+              </span></label>
+            <label class="style"><input type="radio" name="mode" value="fixed" data-key="mode" />
+              <span class="style-row">
+                <svg viewBox="0 0 48 30" aria-hidden="true"><rect class="mf" x=".5" y=".5" width="47" height="29" rx="4"/><rect class="mk" x="32" y="21" width="12" height="5" rx="1.5"/></svg>
+                <span class="style-text"><b>Corner</b><small>Stays in one place. Easy to read, but easy to crop.</small></span>
+              </span></label>
+          </div>
+          <div class="place" data-show="fixed">
+            <div class="posgrid" role="radiogroup" aria-label="Position">
+              <label><input type="radio" name="position" value="tl" data-key="position" aria-label="Top left" /><span></span></label>
+              <label><input type="radio" name="position" value="tc" data-key="position" aria-label="Top center" /><span></span></label>
+              <label><input type="radio" name="position" value="tr" data-key="position" aria-label="Top right" /><span></span></label>
+              <label><input type="radio" name="position" value="ml" data-key="position" aria-label="Middle left" /><span></span></label>
+              <label><input type="radio" name="position" value="mc" data-key="position" aria-label="Center" /><span></span></label>
+              <label><input type="radio" name="position" value="mr" data-key="position" aria-label="Middle right" /><span></span></label>
+              <label><input type="radio" name="position" value="bl" data-key="position" aria-label="Bottom left" /><span></span></label>
+              <label><input type="radio" name="position" value="bc" data-key="position" aria-label="Bottom center" /><span></span></label>
+              <label><input type="radio" name="position" value="br" data-key="position" aria-label="Bottom right" /><span></span></label>
+            </div>
+            <p class="hint">Pick a spot here, or click the preview where you want it.</p>
+          </div>
+        </section>
+
+        <section class="step" aria-labelledby="s3">
+          <h2 id="s3"><span class="n">3</span>Size and strength</h2>
+          <div class="seg three" role="radiogroup" aria-label="Size" id="sizeSeg">
+            <label><input type="radio" name="sizePreset" value="3.5" /><span>Small</span></label>
+            <label><input type="radio" name="sizePreset" value="5" /><span>Medium</span></label>
+            <label><input type="radio" name="sizePreset" value="7.5" /><span>Large</span></label>
+          </div>
+          <label class="field range inline-range">
+            <span class="label">How visible</span>
+            <input type="range" min="5" max="100" step="1" data-key="opacity" />
+            <output data-for="opacity" data-unit="%"></output>
+          </label>
+        </section>
+
+        <details class="more" id="more">
+          <summary><span>More options</span><span data-icon="chevron-down"></span></summary>
+          <div class="more-body">
+            <div class="stack" data-kind="text">
+              <div class="row2">
+                <label class="field">
+                  <span class="label">Font</span>
+                  <select data-key="font">
+                    <option value="sans">Clean</option>
+                    <option value="heavy">Heavy</option>
+                    <option value="serif">Serif</option>
+                    <option value="mono">Typewriter</option>
+                  </select>
+                </label>
+                <div class="checks">
+                  <label class="check"><input type="checkbox" data-key="bold" /><span>Bold</span></label>
+                  <label class="check"><input type="checkbox" data-key="outline" /><span>Outline</span></label>
+                </div>
+              </div>
+            </div>
+            <label class="field range">
+              <span class="label">Exact size <output data-for="size" data-unit="%"></output></span>
+              <input type="range" min="1" max="30" step="0.5" data-key="size" />
+            </label>
+            <label class="field range" data-show="fixed bounce jump combo">
+              <span class="label">Angle <output data-for="rotation" data-unit="°"></output></span>
+              <input type="range" min="-45" max="45" step="1" data-key="rotation" />
+            </label>
+            <label class="field range" data-show="bounce combo tile">
+              <span class="label">Speed <output data-for="speed"></output></span>
+              <input type="range" min="1" max="10" step="1" data-key="speed" />
+            </label>
+            <label class="field range" data-show="jump">
+              <span class="label">Jump every <output data-for="interval" data-unit=" s"></output></span>
+              <input type="range" min="1" max="10" step="0.5" data-key="interval" />
+            </label>
+            <label class="field range" data-show="tile combo">
+              <span class="label">Space between repeats <output data-for="tileGap"></output></span>
+              <input type="range" min="0" max="40" step="1" data-key="tileGap" />
+            </label>
+            <label class="field range" data-show="tile combo">
+              <span class="label">Repeat angle <output data-for="tileAngle" data-unit="°"></output></span>
+              <input type="range" min="-60" max="60" step="1" data-key="tileAngle" />
+            </label>
+            <label class="field range" data-show="combo">
+              <span class="label">Background marks strength <output data-for="tileOpacity" data-unit="%"></output></span>
+              <input type="range" min="10" max="80" step="1" data-key="tileOpacity" />
+            </label>
+            <label class="check" data-show="tile combo"><input type="checkbox" data-key="tileDrift" /><span>Repeats slowly drift</span></label>
+            <label class="field range" data-show="fixed bounce jump combo">
+              <span class="label">Distance from edge <output data-for="margin"></output></span>
+              <input type="range" min="0" max="12" step="0.5" data-key="margin" />
+            </label>
+            <label class="field range">
+              <span class="label">Extra protection <output data-for="jitter"></output></span>
+              <input type="range" min="0" max="100" step="1" data-key="jitter" />
+            </label>
+            <p class="hint">Tiny shifts in size, angle and see-through over time. Makes removal harder, not impossible.</p>
+            <div class="seed-row">
+              <span class="hint">Not happy with where the marks land?</span>
+              <button class="btn ghost small" type="button" id="seedBtn"><span data-icon="shuffle"></span>Shuffle</button>
+              <span id="seedView" hidden></span>
+            </div>
+            <label class="field" id="qualityField">
+              <span class="label">Video quality</span>
+              <select data-key="quality">
+                <option value="original">Keep original quality</option>
+                <option value="high">Best quality (bigger file)</option>
+                <option value="low">Smaller file (faster to upload)</option>
+              </select>
+            </label>
+          </div>
+        </details>
+      </div>
+
+      <div class="checkout empty" id="checkout">
+        <p class="summary" id="summary"><span id="sumFiles">No files yet</span> · <span id="sumStyle">Hardest to remove</span> · <span>saves to <span id="sumWhere">your Downloads</span></span></p>
+        <button class="btn primary big idle" id="exportBtn" type="button">Choose files to start</button>
+        <div class="progress" id="progress" hidden>
+          <div class="bar-track"><i id="bar"></i></div>
+          <div class="progress-row">
+            <span id="progressText">Starting</span>
+            <button class="btn ghost small" type="button" id="cancelBtn">Stop</button>
+          </div>
+        </div>
+        <p class="result" id="result" hidden role="status"></p>
+      </div>
+    </aside>
+  </main>
+
+  <footer class="foot">
+    <p>MarkDrift is a free, open-source tool by UptoSolve. Your videos and photos are processed by this browser, and never leave your device. No sign-up, and we never add a watermark of our own.</p>
+  </footer>
+
+  <div class="dropveil" id="dropveil" aria-hidden="true"><span><span data-icon="upload"></span>Drop to add</span></div>
+  <div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
+
+  <script type="module" src="/src/main.js"></script>
+</body>
+</html>

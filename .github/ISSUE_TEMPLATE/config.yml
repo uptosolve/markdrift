@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Report a security problem
+    url: https://github.com/uptosolve/markdrift/security/advisories/new
+    about: Please report security issues privately, not in a public issue.
+  - name: Use the tool
+    url: https://uptosolve.com/tools/watermark-video/
+    about: The live version of MarkDrift.

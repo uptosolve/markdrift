@@ -1,0 +1,52 @@
+<h2>Put your name on a video before someone else posts it</h2>
+<p>Type your name or @handle, drop in a video, and you get back an MP4 with your mark in every frame. The tool above does the whole job inside this browser tab. Your video never goes to a server, you don't make an account, and the file that comes back carries your mark and nothing else.</p>
+<p>It opens on the "Hardest to remove" style: faint copies of your mark spread over the whole frame, plus one clear copy that drifts around. That's the style we'd use for anything posted publicly, because a mark parked in a corner is the first thing a reposter crops off. If you only want a neat logo in one spot, switch to "Corner". It takes the same few clicks.</p>
+
+<h2>How to add a watermark to a video</h2>
+<ol>
+<li>Click "Choose videos or photos" and pick your clip, or drag it anywhere onto the page. MP4, MOV, WebM and MKV all open.</li>
+<li>Under "Your watermark", leave "Text" selected and type your name or handle. Pick white, black, yellow or any colour you like. White with an outline reads well on most footage, and the outline is on from the start.</li>
+<li>Under "Style", keep "Hardest to remove", or choose "Moving", "Tiled", "Jumping" or "Corner". Press play on the preview to watch what each one does.</li>
+<li>Under "Size and strength", choose Small, Medium or Large, then drag "How visible" until the mark is easy to read but doesn't take over the shot.</li>
+<li>Open "More options" only if you need it. That's where the font, angle, speed and "Video quality" live. "Keep original quality" is the default.</li>
+<li>Click "Add watermark and download". The new file goes to your Downloads with "-watermarked" added to the name, so your original stays untouched.</li>
+</ol>
+<p>The preview is an exact picture of the result. The preview and the export draw the mark with the same code for the same moment in the video, so it lands in the same place, frame for frame.</p>
+
+<h2>What you get back</h2>
+<p>The finished video is H.264 inside an MP4, which is the one combination every phone, gallery and editing app plays. If your browser can't encode H.264, it saves a WebM instead and says so.</p>
+<p>Your sound comes with it. AAC audio is copied across untouched. Opus or PCM audio, which some MP4 players choke on, is converted to AAC. Firefox has no AAC encoder, so in Firefox the audio ends up as Opus.</p>
+<p>Phone footage stored with rotation info comes out the right way up, with the mark straight on top. Vertical and landscape clips both work, and the mark is sized against the short side of the frame, so Medium looks like Medium on either.</p>
+<p>Speed depends on your device, since your device does the work. In our own test, a 3-minute 1080p clip took about 19 seconds in Chrome on a mid-range laptop. A newer machine may be quicker. A phone will be slower. Files over 400 MB are written straight to disk in Chrome and Edge, so a long video doesn't fill up memory.</p>
+
+<h2>When to use a covering style, and when a corner is enough</h2>
+<p>Use "Hardest to remove" or "Tiled" when the video itself is what people come for: a recipe, a tutorial, a product demo, a clip that might travel. Those get downloaded and reposted, and a mark spread across the frame survives a crop.</p>
+<p>A "Corner" mark is fine when you care more about branding than protection. Think of a client deliverable, an internal video, or a paid ad where a clean logo matters. It's easy to read and stays out of the way. It is also easy to crop, and on Reels, TikTok and Shorts the bottom corners sit right under the app's buttons and caption. Our <a href="/tools/guides/watermark-safe-zones/">guide to watermark safe zones</a> shows which parts of the frame get covered.</p>
+<p>No visible watermark is impossible to remove. Moving and tiled marks make removal slower and messier, which is often enough to put off someone who just wants a free video to post.</p>
+<p>Got more than one clip? The same tool takes a whole batch. See <a href="/tools/batch-watermark-videos/">watermarking many videos at once</a>.</p>
+
+<h2>Questions people ask</h2>
+<details>
+<summary>Is my video uploaded anywhere?</summary>
+<p>No. Your browser reads the video, draws the mark and writes the new file on your own device. There's no server step at all, which is also why we can keep it free. The code is open source under the MIT licence at <a href="https://github.com/uptosolve/markdrift">github.com/uptosolve/markdrift</a> if you'd like to check.</p>
+</details>
+<details>
+<summary>Will the video have a MarkDrift or UptoSolve watermark on it?</summary>
+<p>No. The only mark on the file is the text you typed or the logo you chose. There's no sign-up, no credits and no paid step to "remove our watermark", because we never add one.</p>
+</details>
+<details>
+<summary>Which video formats can I use?</summary>
+<p>MP4, MOV, WebM and MKV go in. An H.264 MP4 comes out, or a WebM when the browser can't make MP4. If your browser can't play a format in the preview, you'll see a still frame instead, and the export still works.</p>
+</details>
+<details>
+<summary>Does adding a watermark lower the quality?</summary>
+<p>The video has to be re-encoded, because the mark becomes part of the picture. With "Keep original quality" the tool matches the original closely, so the file size stays near the source. "Best quality (bigger file)" spends more data, and "Smaller file (faster to upload)" spends less.</p>
+</details>
+<details>
+<summary>Can I do this on my phone?</summary>
+<p>It is built to run in phone browsers too (recent Chrome on Android, Safari 17 or newer on iPhone). So far we have tested it on desktop browsers only, and a phone will be slower than a computer. Try a short clip first. For long or 4K videos, a laptop is the better choice.</p>
+</details>
+<details>
+<summary>Which browser should I use?</summary>
+<p>Chrome or Edge 94 and newer, Safari 17 and newer, or Firefox 130 and newer on desktop. Chrome and Edge are the best fit for batches, because they can save straight into a folder. Older browsers show a message and can still watermark photos.</p>
+</details>

@@ -1,0 +1,121 @@
+/* The site around the tool: page intro, breadcrumbs, readable articles, link cards and the footer.
+   Same world as the app: paper, warm ink, 1px lines, one yellow kept for action and selection. */
+
+/* ---------- intro above the tool ---------- */
+.intro { display: flex; flex-direction: column; gap: 4px; padding: 2px 4px 0; }
+.intro h1 {
+  margin: 2px 0 0; font-size: 1.5rem; line-height: 1.2; font-weight: 700; letter-spacing: -0.02em; text-wrap: balance;
+}
+.lede { margin: 0; color: var(--soft); font-size: 0.9375rem; line-height: 1.5; max-width: 72ch; text-wrap: pretty; }
+
+.crumbs ol { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 2px 6px; font-size: 0.75rem; color: var(--soft); }
+.crumbs li { display: flex; align-items: center; gap: 6px; min-width: 0; }
+.crumbs li + li::before { content: "/"; color: var(--edge); }
+.crumbs a { color: var(--soft); text-decoration: none; }
+.crumbs a:hover { color: var(--ink); text-decoration: underline; text-underline-offset: 3px; }
+.crumbs [aria-current] { color: var(--ink); }
+.prose .crumbs ol { margin: 0; padding: 0; font-size: 0.75rem; line-height: 1.5; }
+.prose .crumbs li + li { margin-top: 0; }
+.prose .crumbs a { text-decoration: none; background: none; }
+.prose .crumbs a:hover { text-decoration: underline; }
+
+/* ---------- page body: the article under the tool, guides, hub ---------- */
+.page-body { max-width: 1360px; margin: 0 auto; padding: 40px 28px 8px; }
+.page-tool .page-body { padding-top: 20px; }
+.page-tool .page-body::before { content: ""; display: block; border-top: 1px solid var(--line); margin-bottom: 40px; }
+.page-article .page-body { padding-top: 20px; }
+
+.article-head { display: flex; flex-direction: column; gap: 8px; max-width: 70ch; margin: 0 0 28px; }
+.article-head h1 {
+  margin: 6px 0 0; font-size: clamp(1.75rem, 1.35rem + 1.2vw, 2.25rem); line-height: 1.15; font-weight: 700;
+  letter-spacing: -0.025em; text-wrap: balance;
+}
+.article-head .lede { font-size: 1.0625rem; }
+.article-head .updated { margin: 0; }
+
+.prose { max-width: 70ch; font-size: 1rem; line-height: 1.65; color: var(--ink); overflow-wrap: break-word; }
+.prose > :first-child { margin-top: 0; }
+.prose h2 { margin: 2em 0 0.5em; font-size: 1.25rem; line-height: 1.3; font-weight: 700; letter-spacing: -0.01em; }
+.prose h3 { margin: 1.6em 0 0.4em; font-size: 1.0625rem; line-height: 1.35; font-weight: 600; }
+.prose p, .prose ul, .prose ol, .prose table, .prose figure { margin: 0 0 1em; }
+.prose ul, .prose ol { padding-left: 1.3em; }
+.prose li + li { margin-top: 0.35em; }
+.prose li::marker { color: var(--soft); }
+.prose strong { font-weight: 650; }
+.prose a { color: var(--ink); text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 3px; text-decoration-color: var(--edge); }
+.prose a:hover { text-decoration-color: var(--ink); background: var(--accent-wash); }
+.prose code { font-family: ui-monospace, "Cascadia Mono", Consolas, monospace; font-size: 0.875em; background: var(--field); padding: 0.1em 0.35em; border-radius: 6px; }
+.prose figure { padding: 0; }
+.prose figcaption { color: var(--soft); font-size: 0.8125rem; margin-top: 6px; }
+
+/* tables scroll inside themselves on a phone, never the page */
+.prose table { display: block; max-width: 100%; overflow-x: auto; border-collapse: collapse; font-size: 0.9375rem; line-height: 1.5; font-variant-numeric: tabular-nums; }
+.prose th, .prose td { text-align: left; vertical-align: top; padding: 10px 14px 10px 0; border-bottom: 1px solid var(--line); min-width: 8em; }
+.prose thead th { font-weight: 600; border-bottom: 1px solid var(--ink); white-space: nowrap; }
+.prose tbody th { font-weight: 600; }
+.prose caption { caption-side: top; text-align: left; color: var(--soft); font-size: 0.8125rem; padding: 0 0 8px; }
+
+/* FAQ: an h2 followed by <details> blocks */
+.prose details { border-bottom: 1px solid var(--hair); }
+.prose h2 + details, .prose h3 + details, .prose p + details { border-top: 1px solid var(--hair); }
+.prose summary {
+  list-style: none; cursor: pointer; display: flex; justify-content: space-between; align-items: baseline; gap: 16px;
+  padding: 14px 2px; font-weight: 600; line-height: 1.4;
+}
+.prose summary::-webkit-details-marker { display: none; }
+.prose summary::after { content: "+"; flex: none; color: var(--soft); font-weight: 500; font-size: 1.25rem; line-height: 1; transition: transform .2s var(--ease); }
+.prose details[open] summary::after { transform: rotate(45deg); }
+.prose summary:hover { color: var(--ink); background: var(--band); }
+.prose details > :not(summary) { margin-left: 2px; margin-right: 2px; }
+.prose details > :last-child:not(summary) { margin-bottom: 16px; }
+.prose .placeholder { padding: 12px 14px; border: 1px dashed var(--edge); border-radius: var(--r1); color: var(--soft); }
+
+.updated { color: var(--soft); font-size: 0.8125rem; margin-top: 2em; }
+
+/* ---------- link cards: related pages, hub, 404 ---------- */
+.related { margin-top: 44px; }
+.related h2, .hub-list h2 { margin: 0 0 12px; font-size: 1rem; font-weight: 600; letter-spacing: -0.01em; }
+.hub-list { margin: 0 0 36px; }
+.cards { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 12px; }
+.card {
+  display: flex; flex-direction: column; gap: 4px; height: 100%; padding: 16px 18px;
+  border: 1px solid var(--line); border-radius: var(--r2); color: var(--ink); text-decoration: none;
+  transition: border-color .15s var(--ease), background .15s var(--ease);
+}
+.card:hover { border-color: var(--ink); background: var(--band); }
+.card b { font-weight: 600; font-size: 0.9375rem; }
+.card span { color: var(--soft); font-size: 0.8125rem; line-height: 1.45; }
+.page-404 .hub-list .links { font-size: 0.9375rem; gap: 8px; }
+a.btn { color: var(--ink); text-decoration: none; }
+
+/* ---------- site footer ---------- */
+.site-foot { margin-top: 56px; background: var(--band); border-top: 1px solid var(--line); }
+.foot-grid {
+  max-width: 1360px; margin: 0 auto; padding: 32px 28px 40px;
+  display: grid; grid-template-columns: minmax(0, 2fr) repeat(3, minmax(0, 1fr)); gap: 28px;
+}
+.foot-brand { margin: 0 0 6px; font-weight: 700; letter-spacing: -0.01em; }
+.foot-about p:not(.foot-brand) { margin: 0; color: var(--soft); font-size: 0.8125rem; max-width: 60ch; }
+.foot-h { margin: 0 0 10px; font-weight: 600; font-size: 0.8125rem; }
+.links { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 6px; font-size: 0.8125rem; }
+.links a { color: var(--ink); text-decoration: none; }
+.links a:hover { text-decoration: underline; text-underline-offset: 3px; }
+
+@media (max-width: 960px) {
+  .page-tool .shop { padding-bottom: 8px; }
+  .intro { padding: 0; }
+  .intro h1 { font-size: 1.3125rem; }
+  .lede { font-size: 0.875rem; }
+  .page-body { padding: 28px 16px 8px; }
+  .page-tool .page-body { padding-top: 16px; }
+  .page-tool .page-body::before { margin-bottom: 28px; }
+  .page-article .page-body { padding-top: 16px; }
+  .foot-grid { grid-template-columns: 1fr 1fr; padding: 28px 16px 32px; gap: 24px; }
+  .foot-about { grid-column: 1 / -1; }
+  /* room for the save button that pins to the bottom once files are in */
+  .page-tool .site-foot { padding-bottom: 130px; }
+}
+@media (max-width: 520px) {
+  .cards { grid-template-columns: 1fr; }
+  .prose { font-size: 0.9375rem; }
+}

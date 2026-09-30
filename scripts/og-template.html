@@ -1,0 +1,158 @@
+<!doctype html>
+<!--
+  OG image template, 1200x630. scripts/og-images.mjs serves the project folder, opens this page
+  in headless Chrome once per page, calls window.renderOg({ h1, mode, kind }) and screenshots it.
+  The marks in the two frames are drawn by the app's own renderWatermark() from src/watermark.js,
+  so they look exactly like the tool's output. Earlier moments of the same motion are drawn
+  fainter behind the current one, which is how a moving mark reads in a still picture.
+-->
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<style>
+  @font-face { font-family: 'Google Sans Flex'; font-weight: 400 700; src: url('/public/fonts/google-sans-flex-latin.woff2') format('woff2'); }
+  @font-face { font-family: 'Google Sans Flex'; font-weight: 400 700; src: url('/public/fonts/google-sans-flex-latin-ext.woff2') format('woff2'); unicode-range: U+0100-02BA, U+1E00-1E9F; }
+  :root { --ink: #23231e; --soft: #63635a; --line: #e2e1db; --band: #f7f7f5; --accent: #fcec45; --stage: #23231e; }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; }
+  body {
+    width: 1200px; height: 630px; overflow: hidden; background: #ffffff; color: var(--ink);
+    font-family: 'Google Sans Flex', system-ui, sans-serif; -webkit-font-smoothing: antialiased;
+    display: grid; grid-template-columns: 1fr 560px; gap: 40px; padding: 48px 48px 48px 64px;
+  }
+  .text { display: flex; flex-direction: column; min-width: 0; }
+  .brand { display: flex; align-items: center; gap: 14px; }
+  .brand svg { width: 44px; height: 32px; }
+  .brand b { font-size: 34px; font-weight: 700; letter-spacing: -0.02em; }
+  .brand span { color: var(--soft); font-size: 22px; font-weight: 500; margin-top: 6px; }
+  h1 {
+    margin: auto 0; font-size: 62px; line-height: 1.06; font-weight: 700; letter-spacing: -0.035em;
+    text-wrap: balance; overflow-wrap: break-word;
+  }
+  h1.long { font-size: 52px; }
+  h1.longer { font-size: 44px; }
+  .facts { display: flex; flex-wrap: wrap; gap: 10px; }
+  .facts span {
+    font-size: 21px; font-weight: 600; padding: 9px 18px; border-radius: 99px; background: var(--band);
+    box-shadow: inset 0 0 0 1.5px var(--line);
+  }
+  .facts span:first-child { background: var(--accent); box-shadow: none; }
+  .plate { background: var(--stage); border-radius: 28px; position: relative; overflow: hidden; }
+  canvas { position: absolute; inset: 0; width: 100%; height: 100%; }
+</style>
+</head>
+<body>
+  <div class="text">
+    <div class="brand">
+      <svg viewBox="0 0 28 20" aria-hidden="true"><rect x="1" y="1" width="26" height="18" rx="4" fill="none" stroke="#23231e" stroke-width="2"/><rect x="15" y="11" width="9" height="5" rx="2" fill="#fcec45" stroke="#23231e" stroke-width="1.2"/></svg>
+      <b>MarkDrift</b><span>by UptoSolve</span>
+    </div>
+    <h1 id="h1"></h1>
+    <div class="facts"><span>Free</span><span>Runs in your browser</span><span>No upload</span></div>
+  </div>
+  <div class="plate"><canvas id="c" width="560" height="534"></canvas></div>
+
+<script type="module">
+  import { renderWatermark, StampCache } from '/src/watermark.js';
+  import { DEFAULTS } from '/src/settings.js';
+  import { bouncePos } from '/src/motion.js';
+
+  // a stand-in logo for the logo page: a simple badge, turned white like "Make it white" does
+  function sampleLogo() {
+    const c = new OffscreenCanvas(260, 110);
+    const g = c.getContext('2d');
+    g.fillStyle = '#000';
+    g.beginPath(); g.roundRect(4, 4, 102, 102, 22); g.fill();
+    g.globalCompositeOperation = 'destination-out';
+    g.beginPath(); g.arc(55, 55, 24, 0, Math.PI * 2); g.fill();
+    g.globalCompositeOperation = 'source-over';
+    g.font = '700 58px "Google Sans Flex", system-ui, sans-serif';
+    g.textBaseline = 'middle';
+    g.fillText('logo', 124, 58);
+    return c;
+  }
+
+  function frame(ctx, x, y, w, h, s, logo, times, label, ring) {
+    const g = ctx.createLinearGradient(x, y, x + w, y + h);
+    g.addColorStop(0, '#4a4a41');
+    g.addColorStop(1, '#2f2f29');
+    ctx.save();
+    ctx.beginPath();
+    ctx.roundRect(x, y, w, h, 12);
+    ctx.fillStyle = g;
+    ctx.fill();
+    ctx.clip();
+    ctx.translate(x, y);
+    const unit = Math.min(w, h);
+    const t = times.at(-1);
+    const moving = ['bounce', 'combo'].includes(s.mode);
+    const stamp = new StampCache().get(s, logo, unit);
+    if (s.mode === 'combo') renderWatermark(ctx, w, h, t, { ...s, mode: 'tile', opacity: s.opacity * s.tileOpacity / 100 }, stamp);
+    if (moving) {
+      // where the mark has just been: a dotted route and two fading copies behind it
+      const margin = (s.margin / 100) * unit;
+      const fit = Math.min(1, (w - 2 * margin) / (stamp.width * 1.12), (h - 2 * margin) / (stamp.height * 1.12));
+      const mw = stamp.width * fit, mh = stamp.height * fit;
+      ctx.save();
+      ctx.strokeStyle = 'rgba(252, 236, 69, .75)';
+      ctx.lineWidth = 2.5;
+      ctx.lineCap = 'round';
+      ctx.setLineDash([0.1, 9]);
+      ctx.beginPath();
+      for (let i = 0; i <= 60; i++) {
+        const ti = times[0] + (t - times[0]) * (i / 60);
+        const p = bouncePos(ti, w, h, mw, mh, margin, s.speed, s.seed);
+        const cx = p.x + mw / 2, cy = p.y + mh / 2;
+        if (i) ctx.lineTo(cx, cy); else ctx.moveTo(cx, cy);
+      }
+      ctx.stroke();
+      ctx.restore();
+      times.slice(0, -1).forEach((ti, i, all) => {
+        renderWatermark(ctx, w, h, ti, { ...s, mode: 'bounce', opacity: s.opacity * (0.16 + 0.2 * i / Math.max(1, all.length - 1)) }, stamp);
+      });
+      renderWatermark(ctx, w, h, t, { ...s, mode: 'bounce' }, stamp);
+    } else {
+      renderWatermark(ctx, w, h, t, s, stamp);
+    }
+    ctx.restore();
+    if (ring) {
+      ctx.save();
+      ctx.strokeStyle = '#23231e';
+      ctx.lineWidth = 8;
+      ctx.beginPath();
+      ctx.roundRect(x - 4, y - 4, w + 8, h + 8, 15);
+      ctx.stroke();
+      ctx.restore();
+    }
+    ctx.fillStyle = '#c3c2b8';
+    ctx.font = '500 17px "Google Sans Flex", system-ui, sans-serif';
+    ctx.textBaseline = 'top';
+    ctx.fillText(label, x + 2, y + h + 14);
+  }
+
+  window.renderOg = async ({ h1, mode = 'combo', kind = 'text' }) => {
+    const el = document.getElementById('h1');
+    el.textContent = h1;
+    el.className = h1.length > 58 ? 'longer' : h1.length > 38 ? 'long' : '';
+    await document.fonts.ready;
+    await document.fonts.load('700 62px "Google Sans Flex"');
+    const logo = kind === 'image' ? sampleLogo() : null;
+    const s = {
+      ...DEFAULTS, seed: 20261001, text: '@yourname', kind: logo ? 'image' : 'text', whiten: true,
+      mode, position: 'br', size: mode === 'tile' ? 6 : 8, opacity: 88, jitter: 30, speed: 5, tileOpacity: 38,
+    };
+    const c = document.getElementById('c');
+    const ctx = c.getContext('2d');
+    ctx.fillStyle = '#23231e';
+    ctx.fillRect(0, 0, c.width, c.height);
+    // one setting on both shapes: a landscape frame, and a vertical one in front of it
+    const lw = 452, lh = lw * 9 / 16, vh = 330, vw = vh * 9 / 16;
+    const trail = (t0) => [2.4, 1.2, 0.6, 0].map((d) => t0 - d);
+    frame(ctx, 32, 34, lw, lh, s, logo, trail(2.9), 'Landscape 16:9', false);
+    frame(ctx, c.width - 32 - vw, c.height - 44 - vh, vw, vh, s, logo, trail(4.4), 'Vertical 9:16', true);
+    return true;
+  };
+  window.ogReady = true;
+</script>
+</body>
+</html>

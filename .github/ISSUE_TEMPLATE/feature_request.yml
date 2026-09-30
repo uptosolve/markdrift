@@ -1,0 +1,25 @@
+name: Feature request
+description: Suggest something MarkDrift should do.
+labels: [enhancement]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        MarkDrift stays free, runs only in the browser, and never uploads files. Ideas that need a server or an account are out of scope.
+  - type: textarea
+    id: problem
+    attributes:
+      label: What are you trying to do?
+      description: The situation, not the solution. For example "I post the same clip to Reels and Shorts and want the mark to avoid the caption area."
+    validations:
+      required: true
+  - type: textarea
+    id: idea
+    attributes:
+      label: What would help?
+      description: How you picture it working, if you have an idea.
+  - type: textarea
+    id: now
+    attributes:
+      label: What do you do today instead?
+      description: Another tool, a workaround, or nothing.

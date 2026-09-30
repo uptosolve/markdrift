@@ -1,0 +1,56 @@
+<h2>A watermark that won't stay put</h2>
+<p>A logo in the corner comes off with one crop. A mark that travels across the frame is a different problem for a reposter, because there's no strip of the picture it stays out of. Cropping it means cutting into the video, and blurring it means smearing a path through the whole clip.</p>
+<p>This page opens the tool with "Moving" selected. Your name or logo glides across the frame and bounces off the edges, the way the old DVD screensaver logo did. Two other styles move as well, and each suits a different kind of video.</p>
+
+<h2>Three kinds of motion</h2>
+<p>"Moving" glides and bounces off the edges. It travels at different speeds across and down, so the path doesn't settle into a short, predictable loop. It works well on talking-head clips and tutorials, where the mark can wander without sitting on one thing for long.</p>
+<p>"Jumping" appears in a new random spot every few seconds, with a short fade in and out. It's calmer to watch than constant motion, and nobody can guess where it will land next. You set the gap with "Jump every", anywhere from 1 to 10 seconds.</p>
+<p>"Hardest to remove" puts faint repeats of your mark across the whole frame and one clear moving mark on top. Someone who manages to wipe the moving mark still has the faint layer to deal with.</p>
+<p>"Tiled" can move too. Tick "Repeats slowly drift" in "More options" and the whole grid creeps across the picture.</p>
+
+<h2>How to make a moving watermark</h2>
+<ol>
+<li>Click "Choose videos or photos" and pick your clip, or drop it on the page.</li>
+<li>In "Your watermark", type your @handle, or switch to "Logo" and choose an image. Short text reads better in motion than a full sentence.</li>
+<li>In "Style", keep "Moving", or choose "Jumping" or "Hardest to remove". Press play and the preview shows the real path your mark will take.</li>
+<li>In "Size and strength", start with Medium. If the mark gets distracting when it passes over a face, lower "How visible" a little rather than shrinking it.</li>
+<li>Open "More options" and set "Speed" from 1 to 10. Low numbers drift gently. High numbers are harder to follow but also harder to ignore. "Angle" tilts the mark, and "Extra protection" adds small changes over time (more on that below).</li>
+<li>Click "Add watermark and download". For several clips the button reads "Watermark 5 videos", or however many you added.</li>
+</ol>
+
+<h2>What "Extra protection" and "Shuffle" are for</h2>
+<p>Many removal tools work by tracking a watermark that looks the same in every frame. "Extra protection" gets in the way of that. The mark's size, angle and transparency change slightly and smoothly over time, so no two frames show exactly the same mark. Set it to zero for a perfectly steady mark, or turn it up for more variation.</p>
+<p>Every pattern is also built from a seed, so the path your mark takes is different from one pattern to the next. That means a removal mask someone builds for one of your videos won't line up with another one. If you don't like where the mark crosses on a particular clip, click "Shuffle" and the preview picks a new path straight away.</p>
+<p>Both make removal harder. Neither makes it impossible. A March 2026 test published by imagecrush.io found that current AI removers beat jitter and tiling on still images. That test covered photos, and we haven't seen a published test of moving marks on video, so treat any watermark as something that slows people down. It turns a quick crop into real work.</p>
+
+<h2>When motion helps, and when to skip it</h2>
+<p>Go with a moving style when the clip is likely to be saved and reposted, and when the whole frame is the point: a dance, a recipe from above, a before-and-after, a clip from a live show. A reposter can't frame their way around a mark that visits every part of the picture.</p>
+<p>Skip it, or keep it slow and faint, on screen recordings with small text, where a moving mark keeps landing on the thing people are trying to read. Also skip it on very short loops. If a clip is shorter than your "Jump every" setting, the jumping mark never gets to jump.</p>
+<p>On photos there's nothing to move. If you pick "Moving" or "Jumping" for a photo, the tool uses one spot from the pattern. For pictures, "Tiled" is the better choice. See <a href="/tools/watermark-photos/">watermarking photos</a> for that.</p>
+<p>If the mark mainly has to stay readable inside the app, check where TikTok, Reels and Shorts put their buttons in our <a href="/tools/guides/watermark-safe-zones/">safe zone guide</a>.</p>
+
+<h2>Questions about moving watermarks</h2>
+<details>
+<summary>Will the downloaded video move exactly like the preview?</summary>
+<p>Yes. The preview and the export call the same drawing code with the same time in the video, so the mark is in the same spot in every frame of the file as it was on screen.</p>
+</details>
+<details>
+<summary>Can I draw the path myself?</summary>
+<p>Not by hand. You control the speed, the angle, the "Distance from edge", and which random path you get with "Shuffle". If you need the mark in one exact place, use the "Corner" style and click the preview where you want it.</p>
+</details>
+<details>
+<summary>Does a moving mark make the file bigger or lower the quality?</summary>
+<p>The video is re-encoded whichever style you pick, and the style doesn't change the quality setting. "Keep original quality" keeps the file close to the original size.</p>
+</details>
+<details>
+<summary>Is my video sent to your server to add the animation?</summary>
+<p>No. The motion is drawn frame by frame by your own browser, and the finished file is saved on your device. Nothing is uploaded, there's no account, and we don't add a mark of our own.</p>
+</details>
+<details>
+<summary>Does it work on a phone?</summary>
+<p>It is built for phone browsers too, but we have only tested it on desktop browsers so far, and phones take longer than laptops. Start with a short clip, and use a computer for long or 4K videos.</p>
+</details>
+<details>
+<summary>Which browsers can make moving watermarks?</summary>
+<p>Chrome and Edge 94+, Safari 17+ and desktop Firefox 130+. Older browsers can't make videos and will tell you so, though they can still watermark photos.</p>
+</details>

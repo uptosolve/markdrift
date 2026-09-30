@@ -1,0 +1,65 @@
+name: Bug report
+description: Something broke, an export looks wrong, or a file won't load.
+labels: [bug]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for reporting this. Please don't attach videos or photos you don't want to be public. A description of the file (format, size, where it came from) is usually enough.
+  - type: textarea
+    id: what
+    attributes:
+      label: What happened?
+      description: What you expected, and what you got instead.
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      placeholder: |
+        1. Drop a 1080p MOV from an iPhone
+        2. Pick "Moving"
+        3. Click Watermark
+        4. The export stops at 40%
+    validations:
+      required: true
+  - type: input
+    id: browser
+    attributes:
+      label: Browser and version
+      placeholder: Chrome 141, Firefox 153, Safari 18.2
+    validations:
+      required: true
+  - type: input
+    id: os
+    attributes:
+      label: Operating system and device
+      placeholder: Windows 11 laptop, macOS 15, Android 15 on a Pixel 8, iOS 18
+    validations:
+      required: true
+  - type: input
+    id: file
+    attributes:
+      label: File type
+      description: Container, and codec if you know it. Resolution, length and size help too.
+      placeholder: MP4 (H.264 + AAC), 1920x1080, 3 min, 130 MB
+    validations:
+      required: true
+  - type: dropdown
+    id: style
+    attributes:
+      label: Watermark style
+      options:
+        - Hardest to remove
+        - Moving
+        - Tiled
+        - Jumping
+        - Corner
+        - Not sure / doesn't matter
+  - type: textarea
+    id: console
+    attributes:
+      label: Console errors
+      description: Open the browser's developer tools (F12), look at the Console tab, and paste any red errors here.
+      render: text

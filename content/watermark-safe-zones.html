@@ -1,0 +1,61 @@
+<p>Reels, TikTok and YouTube Shorts all show your video full screen, then draw their own interface on top: the account name, the caption, the like and share buttons, and on ads a call-to-action button. Anything under those parts of the frame is hard to see in the app. For a watermark, that decides whether people notice it at all. This guide collects the published guidance for a 9:16 frame (1080 × 1920 pixels) on each app and turns it into a placement you can use.</p>
+<p>A note on the numbers. The platforms mostly publish safe zones for ads, not for normal posts, and they don't all measure the same way. Normal posts have no ad button, but they do show a caption, the account name and the side buttons, so the ad figures work as a slightly cautious guide. Every figure below is approximate. They were checked on 1 October 2026, and the apps change their layouts from time to time.</p>
+
+<h2>The short version</h2>
+<table>
+<thead>
+<tr><th>App</th><th>Keep clear at the top</th><th>Keep clear at the bottom</th><th>Keep clear at the sides</th><th>Where the figure comes from</th></tr>
+</thead>
+<tbody>
+<tr><td>Instagram and Facebook Reels</td><td>about 14% (about 270 px)</td><td>about 35% (672 px)</td><td>about 6% each side (about 65 px)</td><td>Meta's Reels ad specs</td></tr>
+<tr><td>TikTok</td><td>about 12.5% (240 px)</td><td>about 34% (660 px), more with long captions</td><td>about 11% (120 px), and about 28% (300 px) on the right below the upper half</td><td>TikTok's downloadable safe zone template, as measured by AdKit</td></tr>
+<tr><td>YouTube Shorts</td><td>about 15% (288 px)</td><td>about 35% (672 px)</td><td>about 4% left (48 px), about 18% right (192 px)</td><td>Google's vertical video template, as measured by AdKit</td></tr>
+</tbody>
+</table>
+<p>Pixel values assume a 1080 × 1920 frame. Put all three together and the part of the frame that stays clear on every app is roughly a band from 15% to 65% of the way down, starting about 11% in from the left and ending about 28% in from the right edge.</p>
+
+<h2>Instagram and Facebook Reels</h2>
+<p>Meta's ad specs for Reels are the clearest numbers any of the three apps publish. The <a href="https://www.facebook.com/business/ads-guide/update/video/facebook-facebook-reels">Facebook Reels video ad guide</a> says to consider leaving roughly 14% of the top, 35% of the bottom and 6% on each side free of text, logos and other important elements, so they aren't cropped or covered by the profile icon or call-to-action.</p>
+<p>Meta's newer <a href="https://www.facebook.com/business/help/980593475366490">help page on text overlays and the safe zone</a> no longer gives percentages. It says to keep the top, bottom and side edges of 9:16 ads in Stories, Reels and Feed free of important elements, and to leave the bottom 40% clear if the ad carries a disclaimer. It also warns that on phones taller than 9:16, Meta may zoom the video to fill the screen, which crops whatever sits outside the safe zone. Ads Manager has a "Safe zone guardrail" toggle that draws the area for you.</p>
+<p>For a watermark, the bottom 35% is the part to avoid on Reels. It's the strip Meta says the profile icon and call-to-action can cover, and on a normal Reel it's where your caption and account name show.</p>
+
+<h2>TikTok</h2>
+<p>TikTok doesn't print safe zone numbers in its help text. Its <a href="https://ads.tiktok.com/help/article/tiktok-auction-in-feed-ads">in-feed ad specs</a> say the safe zone depends on the video's shape, the length of the caption and any add-ons, and offer downloadable template files instead. The <a href="https://ads.tiktok.com/help/article/tiktok-reservation-topview">TopView specs</a> add that the longer the caption, the smaller the safe zone, and that the templates may not cover every device.</p>
+<p>AdKit, a third-party tool, published measurements of TikTok's standard template on its <a href="https://adkit.so/tools/safe-zones/tiktok">TikTok safe zone page</a>, updated 10 September 2026. Scaled to 1080 × 1920, it reserves 240 px at the top, 660 px at the bottom and 120 px on each side, with a wider 300 px column on the right starting 840 px from the top. That column is where TikTok stacks its action buttons. With a four-line caption and an anchor link, the reserved bottom grows to 1014 px, more than half the frame.</p>
+<p>TikTok's right side is the one to watch. A mark in the lower right quarter of a TikTok is likely to sit under those buttons.</p>
+
+<h2>YouTube Shorts</h2>
+<p>Google's <a href="https://support.google.com/google-ads/answer/16041697">Shorts ad specs</a> describe what sits on top of a Short: a right-hand panel with like, dislike, comment and share buttons, the channel name and description, and on ads a call-to-action overlay. Google's <a href="https://support.google.com/google-ads/answer/13547298">video ad specs</a> offer a transparent vertical template and say to keep your logo, product and other important elements inside its safe area. That page doesn't mention Shorts by name.</p>
+<p>AdKit measured that vertical template on its <a href="https://adkit.so/tools/safe-zones/youtube">YouTube Shorts safe zone page</a>: the clear area runs from 48 px to 888 px across and from 288 px to 1248 px down, which leaves about 15% at the top and 35% at the bottom. A creator guide from <a href="https://videostew.com/en/blog/33443-youtube-shorts-aspect-ratio-and-layout-guide-2025">Videostew</a> gives the same rough advice, about 15% clear at the top and 35% at the bottom, and notes that the buttons shift a little between devices.</p>
+
+<h2>Where to put your watermark</h2>
+<p>If you want one fixed mark that people can read on all three apps, put it in the middle band: below the top 15%, above the bottom 35%, and away from the right edge. Just left of centre, around a third of the way down, is a spot that stays clear everywhere. The bottom right corner, the default in many editors, is the worst place on all three apps.</p>
+<p>There's a catch worth knowing. The interface only covers the frame inside the app. The video file itself still has your mark wherever you put it. But when someone downloads your clip and reposts it, their post gets the same buttons and caption on top, so a mark in the covered zone stays hidden on the copy too.</p>
+<p>Moving and tiled marks get around the problem. A travelling mark is hidden part of the time, but it keeps passing through the clear middle of the frame, so viewers see it again every few seconds. Faint tiles across the whole picture always leave some copies in view. That's one more reason we suggest the "Hardest to remove" style for short-form video.</p>
+
+<h2>Setting this up in MarkDrift</h2>
+<ol>
+<li>Open the <a href="/tools/watermark-video/">video watermark tool</a> and choose your clips.</li>
+<li>For a fixed mark, pick "Corner" under "Style", then click the preview where you want the mark, or use the middle-left spot on the grid.</li>
+<li>For a moving mark, open "More options" and raise "Distance from edge" so the mark turns back a little before the edges. The setting is small, so it keeps the mark off the outermost strip rather than out of the whole bottom third.</li>
+<li>Under "Size and strength", keep the mark small enough to fit inside the middle band. Sizes are measured against the short side of the frame, so the same setting fits a vertical and a landscape clip alike.</li>
+</ol>
+<p>Why corner marks fail for other reasons too is covered in <a href="/tools/guides/stop-reposting-videos/">how to stop people reposting your videos</a>.</p>
+
+<h2>Safe zone questions</h2>
+<details>
+<summary>Are these the same for normal posts and for ads?</summary>
+<p>Not exactly. The published numbers are for ads, which also show a call-to-action button. Normal posts still have the caption, account name and side buttons in roughly the same places, so the ad figures are a cautious guide for both.</p>
+</details>
+<details>
+<summary>Why don't the sources agree?</summary>
+<p>Each company measures its own screen, the layout depends on the phone and the caption length, and third-party guides round the numbers differently. That's why every figure here is marked as approximate.</p>
+</details>
+<details>
+<summary>Is the top of the frame safe for a watermark?</summary>
+<p>Only partly. The sources above reserve roughly the top 12% to 15% on all three apps. A mark just below that line stays visible.</p>
+</details>
+<details>
+<summary>Do I need to change anything for landscape videos?</summary>
+<p>These figures are for 9:16 vertical video. Landscape videos are shown differently. On Shorts, for example, Google says horizontal videos appear with blurred areas above and below, so the covered parts fall elsewhere. Check your clip in the app's own preview before posting.</p>
+</details>
