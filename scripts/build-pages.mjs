@@ -208,14 +208,47 @@ function crumbsHtml(p) {
   return `<nav class="crumbs" aria-label="Breadcrumb"><ol>${items.join('')}</ol></nav>`;
 }
 
+const APP_ID = ORIGIN + '/tools/#markdrift';
+const ORG = { '@type': 'Organization', '@id': ORIGIN + '/#organization', name: 'UptoSolve', url: ORIGIN + '/', logo: ORIGIN + '/tools/og/tools.png' };
+const CANON = "MarkDrift is a free, open-source (MIT) watermark tool by UptoSolve that adds moving, tiled or corner watermarks to videos and photos, one file or a whole batch, entirely in your browser with nothing uploaded.";
+
 function jsonLd(p, pages) {
   const graph = [];
   const url = abs(p.path);
-  if (p.type === 'tool') {
+  if (p.type === 'hub') {
+    graph.push({
+      '@type': 'WebApplication',
+      '@id': APP_ID,
+      name: 'MarkDrift',
+      alternateName: 'MarkDrift by UptoSolve',
+      url,
+      description: CANON,
+      applicationCategory: 'MultimediaApplication',
+      operatingSystem: 'Any (runs in the browser)',
+      browserRequirements: 'Requires JavaScript. Video export needs a browser with WebCodecs.',
+      isAccessibleForFree: true,
+      offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+      license: 'https://opensource.org/licenses/MIT',
+      sameAs: ['https://github.com/uptosolve/markdrift'],
+      image: ogImage(p),
+      inLanguage: 'en',
+      publisher: ORG,
+    });
+    graph.push({
+      '@type': 'CollectionPage',
+      '@id': url + '#page',
+      url,
+      name: p.title,
+      about: { '@id': APP_ID },
+      hasPart: pages.filter((x) => x.type !== 'hub').map((x) => ({ '@type': 'WebPage', name: x.h1, url: abs(x.path) })),
+    });
+  } else if (p.type === 'tool') {
     graph.push({
       '@type': 'WebApplication',
       '@id': url + '#app',
-      name: p.h1,
+      name: 'MarkDrift',
+      alternateName: p.h1,
+      isPartOf: { '@id': APP_ID },
       url,
       description: p.description,
       applicationCategory: 'MultimediaApplication',
@@ -225,7 +258,9 @@ function jsonLd(p, pages) {
       offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
       image: ogImage(p),
       inLanguage: 'en',
-      publisher: { '@type': 'Organization', name: 'UptoSolve', url: ORIGIN + '/' },
+      license: 'https://opensource.org/licenses/MIT',
+      sameAs: ['https://github.com/uptosolve/markdrift'],
+      publisher: ORG,
     });
   } else if (p.type === 'guide') {
     graph.push({
@@ -239,8 +274,9 @@ function jsonLd(p, pages) {
       datePublished: p.published || p.updated,
       dateModified: p.updated,
       inLanguage: 'en',
-      author: { '@type': 'Organization', name: 'UptoSolve', url: ORIGIN + '/' },
-      publisher: { '@type': 'Organization', name: 'UptoSolve', url: ORIGIN + '/' },
+      author: ORG,
+      publisher: ORG,
+      about: { '@id': APP_ID },
     });
   }
   graph.push({
@@ -483,6 +519,8 @@ export function buildPages({ quiet = false } = {}) {
   }
   write('404.html', notFoundPage(pages, parts));
   write('.meta/sitemap.xml', sitemap(pages));
+  // 301 for URLs typed without the trailing slash (Cloudflare's auto-trailing-slash answers 307)
+  write('.meta/_redirects', pages.map((p) => `${p.path.slice(0, -1)} ${p.path} 301`).join('\n') + '\n');
   write('.meta/pages.json', JSON.stringify(pages, null, 2));
   if (!quiet) {
     console.log(`build-pages: ${pages.length} pages + 404 written to site/`);

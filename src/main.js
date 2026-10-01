@@ -688,8 +688,14 @@ function demoFrame(ctx, x, y, w, h, t, s, i, label) {
   ctx.textBaseline = 'top';
   ctx.fillText(label, x, y + h + labelPx * 0.7);
 }
+let demoRect = null;
+let demoLast = 0;
+if ('ResizeObserver' in window) new ResizeObserver(() => { demoRect = null; }).observe(el.demo);
 function drawDemo() {
-  const rect = el.demo.getBoundingClientRect();
+  const now = performance.now();
+  if (now - demoLast < 33) return;
+  demoLast = now;
+  const rect = demoRect || (demoRect = el.demo.getBoundingClientRect());
   if (!rect.width) return;
   const dpr = Math.min(2, window.devicePixelRatio || 1);
   const W = Math.round(rect.width * dpr), H = Math.round(rect.height * dpr);
@@ -1302,4 +1308,6 @@ restoreLogo().then((ok) => {
 });
 
 // warm up the video engine in the background so the first drop feels instant
-(window.requestIdleCallback || ((f) => setTimeout(f, 1500)))(() => { if (canEncode) videoEngine().catch(() => {}); });
+const warmEngine = () => { if (canEncode) videoEngine().catch(() => {}); };
+for (const ev of ['pointerenter', 'focusin', 'touchstart']) el.drop.addEventListener(ev, warmEngine, { once: true, passive: true });
+document.addEventListener('dragenter', warmEngine, { once: true });

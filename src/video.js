@@ -127,6 +127,13 @@ export async function exportVideo(file, settings, logo, { onProgress, writable, 
   checkCancel();
   let ext = 'mp4';
   let mime = 'video/mp4';
+  // a busy hardware encoder can refuse H.264 for a moment; software usually still takes it
+  if ((!built.conversion.isValid || !hasVideo(built.conversion)) && !softwareEncode) {
+    built.input.dispose?.();
+    preferSoftwareDecoding();
+    built = await buildConversion(file, settings, logo, mp4, writable);
+    checkCancel();
+  }
   if (!built.conversion.isValid || !hasVideo(built.conversion)) {
     built.input.dispose?.();
     if (writable) {

@@ -43,7 +43,7 @@ body {
 }
 [hidden] { display: none !important; }
 button, input, select, summary { font: inherit; color: inherit; }
-h2 { margin: 0; }
+h2, h3 { margin: 0; }
 ::selection { background: var(--accent); color: #23231e; }
 html { scrollbar-color: #c8c7bf transparent; }
 .order-body, .queue { scrollbar-width: thin; scrollbar-color: #c8c7bf transparent; }
@@ -117,7 +117,7 @@ input, textarea { caret-color: var(--ink); }
 /* ---------- the cart ---------- */
 .cart-list { border: 1px solid var(--line); border-radius: var(--r2); padding: 14px 14px 10px; }
 .cart-head { display: flex; align-items: center; gap: 12px; padding: 0 2px 4px; flex-wrap: wrap; }
-.cart-head h2 { font-size: 1rem; font-weight: 600; }
+.cart-head h2, .cart-head h3 { font-size: 1rem; font-weight: 600; }
 .cart-head .btn { margin-left: auto; }
 .cart-sum { margin: 0 2px 10px; color: var(--soft); font-size: 0.8125rem; }
 .switch { display: inline-flex; background: var(--field); border-radius: var(--r3); padding: 3px; }
@@ -168,7 +168,7 @@ input, textarea { caret-color: var(--ink); }
 .order-body { overflow-y: auto; padding: 4px 20px 8px; overscroll-behavior: contain; }
 .order-body.fade { -webkit-mask-image: linear-gradient(to bottom, #000 calc(100% - 36px), transparent); mask-image: linear-gradient(to bottom, #000 calc(100% - 36px), transparent); }
 .step { padding: 12px 0 14px; display: flex; flex-direction: column; gap: 10px; border-bottom: 1px solid var(--hair); }
-.step h2 { display: flex; align-items: center; gap: 10px; font-size: 1rem; font-weight: 600; letter-spacing: -0.01em; }
+.step h2, .step h3 { display: flex; align-items: center; gap: 10px; font-size: 1rem; font-weight: 600; letter-spacing: -0.01em; }
 .n {
   width: 22px; height: 22px; border-radius: var(--r3); background: var(--ink); color: var(--page);
   display: grid; place-items: center; font-size: 0.75rem; font-weight: 600; flex: none;

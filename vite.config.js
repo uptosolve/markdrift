@@ -71,6 +71,8 @@ const siteExtras = {
   closeBundle() {
     const headers = path.join(DIST, 'tools', '_headers');
     if (fs.existsSync(headers)) fs.renameSync(headers, path.join(DIST, '_headers'));
+    const redirects = path.join(SITE, '.meta', '_redirects');
+    if (fs.existsSync(redirects)) fs.copyFileSync(redirects, path.join(DIST, '_redirects'));
   },
 };
 
