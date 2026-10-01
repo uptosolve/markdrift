@@ -15,7 +15,8 @@
     "e2e": "node tests/e2e/run.mjs",
     "make-test-media": "bash tests/e2e/make-media.sh",
     "screenshots": "node tests/e2e/screenshots.mjs",
-    "check-site": "node scripts/check-site.mjs"
+    "check-site": "node scripts/check-site.mjs",
+    "deploy": "npm run build && npx wrangler@4 deploy"
   },
   "dependencies": {
     "fflate": "^0.8.3",

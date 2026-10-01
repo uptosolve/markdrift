@@ -1,0 +1,18 @@
+// Deploys the built site (dist/) as a static-assets-only Worker on uptosolve.com/tools.
+// Nothing runs on the server: requests are served straight from the uploaded files.
+//   npm run deploy
+{
+  "name": "markdrift",
+  "compatibility_date": "2026-09-30",
+  "assets": {
+    "directory": "./dist",
+    "html_handling": "auto-trailing-slash",
+    "not_found_handling": "404-page"
+  },
+  "routes": [
+    { "pattern": "uptosolve.com/tools", "zone_name": "uptosolve.com" },
+    { "pattern": "uptosolve.com/tools/*", "zone_name": "uptosolve.com" }
+  ],
+  "workers_dev": false,
+  "preview_urls": false
+}
