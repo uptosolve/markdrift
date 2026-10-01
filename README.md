@@ -46,7 +46,7 @@ Speed depends on the machine. On my mid-range dev laptop, a 3-minute 1080p clip 
 
 ## Privacy
 
-Your videos, photos and logo are read from your disk by the browser and processed in the page. They are never uploaded, because there is nowhere to upload them to. The font is self-hosted. You can check this yourself: open the browser's Network tab, export a video, and watch for requests.
+Your videos, photos and logo are read from your disk by the browser and processed in the page. They are never uploaded, because there is nowhere to upload them to. The font is self-hosted. You can check this yourself: open the browser's Network tab and export a video. On uptosolve.com you'll see the page's own files plus one small request to Cloudflare Web Analytics, a cookieless page-view counter that's on for the whole uptosolve.com domain. None of those requests carry your files.
 
 Settings (text, style, sliders) are saved in your browser's localStorage so they're there next time. They never leave the device.
 
