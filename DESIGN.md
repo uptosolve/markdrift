@@ -6,7 +6,7 @@ colors:
   band: "#f7f7f5"
   field: "#f4f3ef"
   ink: "#23231e"
-  soft: "#63635a"
+  soft: "#52524b"
   line: "#e2e1db"
   hair: "#ebeae4"
   edge: "#8c8b82"

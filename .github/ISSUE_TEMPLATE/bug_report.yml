@@ -51,11 +51,11 @@ body:
     attributes:
       label: Watermark style
       options:
-        - Hardest to remove
         - Moving
-        - Tiled
         - Jumping
         - Corner
+        - Tiled
+        - Hardest to remove
         - Not sure / doesn't matter
   - type: textarea
     id: console

@@ -1,4 +1,4 @@
-// Renders one 1200x630 OG image per page into public/og/<slug>.png (Vite copies it to /tools/og/).
+// Renders one 1200x630 OG image per page into public/og/<slug>.png (Vite copies it to /tools/watermark/og/).
 //
 //   node scripts/og-images.mjs        (runs as part of npm run build)
 //

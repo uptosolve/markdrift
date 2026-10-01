@@ -1,8 +1,8 @@
 # MarkDrift
 
-A free watermark tool for videos and photos that runs in your browser. Use it at **https://uptosolve.com/tools/watermark-video/**
+A free watermark tool for videos and photos that runs in your browser. Use it at **https://uptosolve.com/tools/watermark/**
 
-![MarkDrift with four videos of mixed sizes in the queue and the "Hardest to remove" style selected](docs/ui-batch.png)
+![MarkDrift with four videos of mixed sizes in the queue](docs/ui-batch.png)
 
 I wanted a moving watermark on my videos, the kind that drifts across the frame so nobody can crop it out. The tools I found charged credits for it, per video, and wanted the file uploaded to their servers first. Drawing a logo on each frame doesn't need a server. A browser can do it on your own machine. So MarkDrift is free, has no account, adds no watermark of its own, and your files stay on your computer.
 
@@ -16,11 +16,11 @@ It's made by [UptoSolve](https://uptosolve.com) and released under the MIT licen
 - Videos are processed one after another. Chrome and Edge save them into a folder you pick once. Other browsers download each one when it's done. One failed file doesn't stop the rest, and Stop keeps whatever has already finished.
 - Text or logo. Text has four font styles, colour, bold and an outline. A logo can be PNG, JPG, SVG or WebP, and can be turned white.
 - Five styles (the internal mode name is in brackets):
-  - Hardest to remove (`combo`): faint marks tiled across the frame, plus one clear mark that moves
-  - Moving (`bounce`): glides and bounces off the edges, like the old DVD logo
-  - Tiled (`tile`): repeats across the whole frame, and can drift slowly
+  - Moving (`bounce`): glides and bounces off the edges, like the old DVD logo. The default and the one we recommend.
   - Jumping (`jump`): pops up somewhere new every few seconds
   - Corner (`fixed`): stays in one of nine spots
+  - Tiled (`tile`): repeats across the whole frame, and can drift slowly
+  - Hardest to remove (`combo`): faint marks tiled across the frame, plus one clear mark that moves
 - Extra protection, which the code calls wobble or jitter: small, smooth changes in size, angle and opacity over time, so the mark is never quite the same in two frames.
 - A pattern seed. It starts random and the Shuffle button picks a new one, so your marks don't follow the same path as anyone else's and a removal mask built for one pattern won't line up with another.
 - The live preview matches the export frame for frame.
@@ -83,7 +83,7 @@ npm run e2e              # real exports in Chrome and Firefox, checked with ffpr
 npm run build            # static site in dist/
 ```
 
-`npm run dev` and `npm run build` first run `scripts/build-pages.mjs`, which generates the pages in `site/` from `content/` and the app markup in `index.html`. Vite then serves or builds `site/` under the `/tools/` base path. The build ends up in `dist/tools/`.
+`npm run dev` and `npm run build` first run `scripts/build-pages.mjs`, which generates the pages in `site/` from `content/` and the app markup in `index.html`. Vite then serves or builds `site/` under the `/tools/watermark/` base path. The build ends up in `dist/tools/watermark/`.
 
 `npm test` covers the motion math and the Firefox H.264 fix. It needs no browser.
 
@@ -99,22 +99,22 @@ Firefox on Windows encodes H.264 through Media Foundation, and the decoder confi
 
 ## Deploy
 
-The build is plain static files, so it runs on Cloudflare's free plan. uptosolve.com serves it from a Cloudflare Worker with static assets only (no Worker script), on the routes `uptosolve.com/tools/*` and `uptosolve.com/tools`. The rest of uptosolve.com is a separate site.
+The build is plain static files, so it runs on Cloudflare's free plan. uptosolve.com serves it from a Cloudflare Worker with static assets only (no Worker script), on the routes `uptosolve.com/tools/watermark/*` and `uptosolve.com/tools/watermark`. It owns that folder only: `uptosolve.com/tools/` itself is a separate page that lists every UptoSolve tool, and the rest of uptosolve.com is a separate site. Cloudflare sends each request to the most specific route, so they never overlap.
 
 The Worker's assets settings:
 
 ```jsonc
 {
   "name": "markdrift",
-  "compatibility_date": "2026-10-01",
+  "compatibility_date": "2026-09-30",
   "assets": {
     "directory": "./dist",
     "html_handling": "auto-trailing-slash",
     "not_found_handling": "404-page"
   },
   "routes": [
-    { "pattern": "uptosolve.com/tools/*", "zone_name": "uptosolve.com" },
-    { "pattern": "uptosolve.com/tools", "zone_name": "uptosolve.com" }
+    { "pattern": "uptosolve.com/tools/watermark/*", "zone_name": "uptosolve.com" },
+    { "pattern": "uptosolve.com/tools/watermark", "zone_name": "uptosolve.com" }
   ]
 }
 ```

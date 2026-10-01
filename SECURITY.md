@@ -19,4 +19,4 @@ MarkDrift has no server, no accounts and no uploads. Everything happens in the p
 
 ## Supported versions
 
-Only the current code on the `main` branch, which is what runs at https://uptosolve.com/tools/.
+Only the current code on the `main` branch, which is what runs at https://uptosolve.com/tools/watermark/.

@@ -1,32 +1,15 @@
 [
   {
-    "slug": "tools",
-    "path": "/tools/",
-    "type": "hub",
-    "title": "MarkDrift by UptoSolve: Free Video and Photo Watermark Tool",
-    "description": "Free browser tools from UptoSolve. MarkDrift puts moving, tiled or corner watermarks on videos and photos. No upload, no sign-up, no logo of ours.",
-    "h1": "MarkDrift: free watermark tool for videos and photos",
-    "lede": "MarkDrift is a free, open-source (MIT) watermark tool by UptoSolve that adds moving, tiled or corner watermarks to videos and photos, one file or a whole batch, entirely in your browser with nothing uploaded.",
-    "preset": null,
-    "related": [
-      "watermark-video",
-      "batch-watermark-videos",
-      "watermark-photos",
-      "free-video-watermark-tools-compared"
-    ],
-    "updated": "2026-10-01"
-  },
-  {
     "slug": "watermark-video",
-    "path": "/tools/watermark-video/",
+    "path": "/tools/watermark/",
     "type": "tool",
-    "title": "Add a Watermark to Video Free: No Upload, No Sign-up",
-    "description": "Put your name or logo on a video in your browser. Moving, tiled or corner styles, MP4 out. Nothing is uploaded, no account, no watermark of ours.",
-    "h1": "Add a watermark to a video, free",
-    "lede": "Type your name or pick your logo, drop in a video, and download an MP4 with your mark in every frame. It all runs in this tab, so your video never leaves your device.",
+    "title": "MarkDrift: Free Video and Photo Watermark Tool, No Upload",
+    "description": "Put your name or logo on videos and photos in your browser. Moving, tiled or corner marks, one file or a batch. Free, nothing uploaded, no sign-up.",
+    "h1": "MarkDrift: free watermark tool for videos and photos",
+    "lede": "Type your name or pick your logo, drop in a video or a whole batch, and download files with your mark in every frame. It all runs in this tab, so nothing leaves your device.",
     "preset": {
       "tab": "video",
-      "mode": "combo"
+      "mode": "bounce"
     },
     "related": [
       "moving-watermark",
@@ -34,11 +17,12 @@
       "add-logo-to-video",
       "watermark-safe-zones"
     ],
-    "updated": "2026-10-01"
+    "updated": "2026-10-01",
+    "main": true
   },
   {
     "slug": "moving-watermark",
-    "path": "/tools/moving-watermark/",
+    "path": "/tools/watermark/moving/",
     "type": "tool",
     "title": "Moving Watermark Maker: Animated Marks for Video, Free",
     "description": "Make a watermark that glides, bounces or jumps around your video, so a crop can't cut it out. Free, runs in your browser, nothing uploaded.",
@@ -57,7 +41,7 @@
   },
   {
     "slug": "batch-watermark-videos",
-    "path": "/tools/batch-watermark-videos/",
+    "path": "/tools/watermark/batch/",
     "type": "tool",
     "title": "Batch Watermark Videos: Many Files at Once, Free",
     "description": "Add a whole shoot of Reels or TikToks, set one watermark, export them all. Vertical and landscape mixed. Free, no upload, saves to a folder in Chrome.",
@@ -65,7 +49,7 @@
     "lede": "Add every clip from the shoot, choose one set of settings, and press one button. Videos are made one after another and saved as each one finishes.",
     "preset": {
       "tab": "video",
-      "mode": "combo"
+      "mode": "bounce"
     },
     "related": [
       "watermark-video",
@@ -76,7 +60,7 @@
   },
   {
     "slug": "watermark-photos",
-    "path": "/tools/watermark-photos/",
+    "path": "/tools/watermark/photos/",
     "type": "tool",
     "title": "Watermark Photos Online Free: Batch, Tiled, No Upload",
     "description": "Add a tiled or corner watermark to JPG, PNG and WebP photos in your browser. Do one photo or a whole batch and get a ZIP back. Nothing is uploaded.",
@@ -95,7 +79,7 @@
   },
   {
     "slug": "add-logo-to-video",
-    "path": "/tools/add-logo-to-video/",
+    "path": "/tools/watermark/logo/",
     "type": "tool",
     "title": "Add Logo to Video Online Free, With No Extra Watermark",
     "description": "Put your PNG or SVG logo on any video, in a corner or moving. Free in your browser, nothing uploaded, and the only logo on the file is yours.",
@@ -116,7 +100,7 @@
   },
   {
     "slug": "stop-reposting-videos",
-    "path": "/tools/guides/stop-reposting-videos/",
+    "path": "/tools/watermark/guides/stop-reposting-videos/",
     "type": "guide",
     "title": "How to Stop People Reposting Your Reels and TikToks",
     "description": "Why corner watermarks get cropped, what makes a mark harder to remove, and how to report a stolen video on TikTok, Instagram and YouTube.",
@@ -132,7 +116,7 @@
   },
   {
     "slug": "watermark-safe-zones",
-    "path": "/tools/guides/watermark-safe-zones/",
+    "path": "/tools/watermark/guides/watermark-safe-zones/",
     "type": "guide",
     "title": "Where to Put a Watermark on Reels, TikTok and Shorts",
     "description": "Which parts of a 9:16 frame Reels, TikTok and YouTube Shorts cover with buttons and captions, with sourced figures and the best spot for your mark.",
@@ -148,7 +132,7 @@
   },
   {
     "slug": "free-video-watermark-tools-compared",
-    "path": "/tools/guides/free-video-watermark-tools-compared/",
+    "path": "/tools/watermark/guides/free-video-watermark-tools-compared/",
     "type": "guide",
     "title": "Free Video Watermark Tools Compared (Checked Oct 2026)",
     "description": "Kapwing, Canva, VEED, Watermarkly, Recapo, VidShift, Bannerbear and Shutter Encoder: free limits, added watermarks, sign-up and upload, side by side.",

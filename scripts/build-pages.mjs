@@ -18,6 +18,10 @@ const CONTENT = path.join(ROOT, 'content');
 const SITE = path.join(ROOT, 'site');
 const ORIGIN = 'https://uptosolve.com';
 const REPO = 'https://github.com/uptosolve/markdrift';
+// MarkDrift owns this folder of uptosolve.com and nothing outside it. /tools/ itself (the list of
+// every UptoSolve tool) is a separate site, see ARCHITECTURE.md.
+const BASE = '/tools/watermark/';
+const HUB = '/tools/';
 
 // Short labels for breadcrumbs, the footer and link lists. Anything not listed uses its H1.
 const SHORT = {
@@ -50,7 +54,7 @@ const FALLBACK = [
   lede: '[Placeholder] The lede for this page is not written yet.',
 }));
 
-const TYPES = ['tool', 'guide', 'hub'];
+const TYPES = ['tool', 'guide'];
 const PRESET_VALUES = {
   tab: ['video', 'image'],
   mode: ['combo', 'bounce', 'tile', 'jump', 'fixed'],
@@ -63,7 +67,7 @@ const warn = (msg) => warnings.push(msg);
 
 const esc = (s) => String(s ?? '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 const abs = (p) => ORIGIN + p;
-const ogImage = (p) => `${ORIGIN}/tools/og/${p.slug}.png`;
+const ogImage = (p) => `${ORIGIN}${BASE}og/${p.slug}.png`;
 const label = (p) => SHORT[p.slug] || p.h1;
 
 export function loadPages() {
@@ -84,7 +88,7 @@ export function loadPages() {
   pages = pages.filter((p) => {
     if (!p || !p.slug || !p.path || !TYPES.includes(p.type)) { warn(`skipped a page without slug/path/type: ${JSON.stringify(p).slice(0, 80)}`); return false; }
     if (seen.has(p.slug)) { warn(`duplicate slug ${p.slug}, kept the first`); return false; }
-    if (!/^\/tools\/([a-z0-9-]+\/)*$/.test(p.path)) { warn(`${p.slug}: path ${p.path} must look like /tools/.../ with a trailing slash`); return false; }
+    if (!p.path.startsWith(BASE) || !/^\/([a-z0-9-]+\/)*$/.test(p.path)) { warn(`${p.slug}: path ${p.path} must start with ${BASE} and end with a slash`); return false; }
     seen.add(p.slug);
     return true;
   });
@@ -115,7 +119,8 @@ export function loadPages() {
     const dupes = pages.filter((p, i) => pages.findIndex((q) => q[key] === p[key]) !== i);
     for (const d of dupes) warn(`${d.slug}: ${key} is the same as another page's`);
   }
-  if (!pages.some((p) => p.type === 'hub')) warn('no hub page (type "hub") in content/pages.json');
+  const mains = pages.filter((p) => p.main);
+  if (mains.length !== 1 || mains[0].path !== BASE) warn(`exactly one page needs "main": true and the path ${BASE}`);
   return pages;
 }
 
@@ -149,6 +154,33 @@ function cleanAttrs(attrs, tag, slug) {
     }
   }
   return kept.length ? ' ' + kept.join(' ') : '';
+}
+
+const slugify = (s) => s.toLowerCase().replace(/&[a-z]+;/g, '').replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '').slice(0, 60);
+
+// Gives every h2 an id (unless it has one) and returns the list for the "On this page" column.
+function withToc(html) {
+  const toc = [];
+  const used = new Set();
+  const out = html.replace(/<h2(?: id="([^"]*)")?>([\s\S]*?)<\/h2>/g, (m, id, inner) => {
+    const text = inner.replace(/<[^>]+>/g, '').trim();
+    let slug = id || slugify(text) || 'section';
+    while (used.has(slug)) slug += '-2';
+    used.add(slug);
+    toc.push({ slug, text });
+    return `<h2 id="${slug}">${inner}</h2>`;
+  });
+  return { html: out, toc };
+}
+
+function tocAside(toc, back) {
+  if (toc.length < 3) return '';
+  return `
+      <aside class="toc" aria-labelledby="toc-h">
+        <p class="toc-h" id="toc-h">On this page</p>
+        <ol>${toc.map((t) => `<li><a href="#${t.slug}">${t.text}</a></li>`).join('')}</ol>${back ? `
+        <a class="btn ghost small" href="#tool">${icon('arrow-up', 16)}Back to the tool</a>` : ''}
+      </aside>`;
 }
 
 function readFragment(p) {
@@ -187,17 +219,15 @@ function withIcons(html) {
 }
 
 function header(parts) {
-  return parts.header
-    .replace('href="/"', 'href="/tools/"')
-    .replace('aria-label="MarkDrift by UptoSolve, home"', 'aria-label="MarkDrift by UptoSolve, all tools"');
+  return parts.header;
 }
 
 /* ---------- shared blocks ---------- */
 
 function crumbs(p) {
-  const trail = [{ name: 'UptoSolve', url: ORIGIN + '/' }];
-  if (p.type !== 'hub') trail.push({ name: 'Tools', url: abs('/tools/') });
-  trail.push({ name: p.type === 'hub' ? 'Tools' : label(p), url: abs(p.path) });
+  const trail = [{ name: 'UptoSolve', url: ORIGIN + '/' }, { name: 'Tools', url: abs(HUB) }];
+  if (!p.main) trail.push({ name: 'MarkDrift', url: abs(BASE) });
+  trail.push({ name: p.main ? 'MarkDrift' : label(p), url: abs(p.path) });
   return trail;
 }
 
@@ -208,14 +238,14 @@ function crumbsHtml(p) {
   return `<nav class="crumbs" aria-label="Breadcrumb"><ol>${items.join('')}</ol></nav>`;
 }
 
-const APP_ID = ORIGIN + '/tools/#markdrift';
-const ORG = { '@type': 'Organization', '@id': ORIGIN + '/#organization', name: 'UptoSolve', url: ORIGIN + '/', logo: ORIGIN + '/tools/og/tools.png' };
+const APP_ID = ORIGIN + BASE + '#markdrift';
+const ORG = { '@type': 'Organization', '@id': ORIGIN + '/#organization', name: 'UptoSolve', url: ORIGIN + '/', logo: ORIGIN + BASE + 'og/watermark-video.png' };
 const CANON = "MarkDrift is a free, open-source (MIT) watermark tool by UptoSolve that adds moving, tiled or corner watermarks to videos and photos, one file or a whole batch, entirely in your browser with nothing uploaded.";
 
 function jsonLd(p, pages) {
   const graph = [];
   const url = abs(p.path);
-  if (p.type === 'hub') {
+  if (p.main) {
     graph.push({
       '@type': 'WebApplication',
       '@id': APP_ID,
@@ -233,14 +263,7 @@ function jsonLd(p, pages) {
       image: ogImage(p),
       inLanguage: 'en',
       publisher: ORG,
-    });
-    graph.push({
-      '@type': 'CollectionPage',
-      '@id': url + '#page',
-      url,
-      name: p.title,
-      about: { '@id': APP_ID },
-      hasPart: pages.filter((x) => x.type !== 'hub').map((x) => ({ '@type': 'WebPage', name: x.h1, url: abs(x.path) })),
+      hasPart: pages.filter((x) => !x.main).map((x) => ({ '@type': 'WebPage', name: x.h1, url: abs(x.path) })),
     });
   } else if (p.type === 'tool') {
     graph.push({
@@ -352,7 +375,6 @@ function related(p, pages) {
 function footer(parts, pages) {
   const tools = pages.filter((q) => q.type === 'tool');
   const guides = pages.filter((q) => q.type === 'guide');
-  const hub = pages.find((q) => q.type === 'hub');
   return `
   <footer class="site-foot">
     <div class="foot-grid">
@@ -362,7 +384,7 @@ function footer(parts, pages) {
       </div>
       <nav aria-label="Tools">
         <p class="foot-h">Tools</p>
-        <ul class="links">${hub ? `<li><a href="${hub.path}">All tools</a></li>` : ''}${tools.map((q) => `<li><a href="${q.path}">${esc(label(q))}</a></li>`).join('')}</ul>
+        <ul class="links">${tools.map((q) => `<li><a href="${q.path}">${esc(label(q))}</a></li>`).join('')}</ul>
       </nav>
       <nav aria-label="Guides">
         <p class="foot-h">Guides</p>
@@ -370,7 +392,7 @@ function footer(parts, pages) {
       </nav>
       <nav aria-label="UptoSolve">
         <p class="foot-h">UptoSolve</p>
-        <ul class="links"><li><a href="${ORIGIN}/">UptoSolve home</a></li><li><a href="${REPO}">MarkDrift source code</a></li></ul>
+        <ul class="links"><li><a href="${HUB}">All free tools</a></li><li><a href="${ORIGIN}/">UptoSolve home</a></li><li><a href="${REPO}">MarkDrift source code</a></li></ul>
       </nav>
     </div>
   </footer>`;
@@ -388,6 +410,7 @@ function toolPage(p, pages, parts) {
         <h1>${esc(p.h1)}</h1>
         <p class="lede">${esc(p.lede)}</p>
       </div>`;
+  const body = withToc(readFragment(p));
   const tool = parts.tool.replace('<section class="cart" aria-label="Your files">', (m) => m + intro);
   if (tool === parts.tool) throw new Error('index.html: could not find <section class="cart" aria-label="Your files">');
   return `${head(p, pages)}
@@ -395,13 +418,15 @@ function toolPage(p, pages, parts) {
   ${header(parts)}
 
   <main>
-  <div class="shop">${tool}</div>
+  <div class="shop" id="tool">${tool}</div>
 
   <div class="page-body">
+    <div class="read">
     <article class="prose" aria-label="About this tool">
-      ${readFragment(p)}
+      ${body.html}
       <p class="updated">Page updated ${updatedText(p.updated)}.</p>
-    </article>${related(p, pages)}
+    </article>${tocAside(body.toc, true)}
+    </div>${related(p, pages)}
   </div>
   </main>
 ${footer(parts, pages)}
@@ -415,11 +440,13 @@ ${footer(parts, pages)}
 }
 
 function guidePage(p, pages, parts) {
+  const body = withToc(readFragment(p));
   return `${head(p, pages)}
 <body class="page-article">
   ${header(parts)}
 
   <main class="page-body">
+    <div class="read">
     <article class="prose">
       <header class="article-head">
         ${crumbsHtml(p)}
@@ -427,39 +454,9 @@ function guidePage(p, pages, parts) {
         <p class="lede">${esc(p.lede)}</p>
         <p class="updated">Updated ${updatedText(p.updated)}</p>
       </header>
-      ${readFragment(p)}
-    </article>${related(p, pages)}
-  </main>
-${footer(parts, pages)}
-</body>
-</html>
-`;
-}
-
-function hubPage(p, pages, parts) {
-  const tools = pages.filter((q) => q.type === 'tool');
-  const guides = pages.filter((q) => q.type === 'guide');
-  const hasFragment = fs.existsSync(path.join(CONTENT, `${p.slug}.html`));
-  return `${head(p, pages)}
-<body class="page-article page-hub">
-  ${header(parts)}
-
-  <main class="page-body">
-    <header class="article-head">
-      ${crumbsHtml(p)}
-      <h1>${esc(p.h1)}</h1>
-      <p class="lede">${esc(p.lede)}</p>
-    </header>
-    ${hasFragment ? `<article class="prose">
-      ${readFragment(p)}
-    </article>` : `<section class="hub-list" aria-labelledby="tools-h">
-      <h2 id="tools-h">Tools</h2>
-      ${cards(tools)}
-    </section>
-    ${guides.length ? `<section class="hub-list" aria-labelledby="guides-h">
-      <h2 id="guides-h">Guides</h2>
-      ${cards(guides)}
-    </section>` : ''}`}
+      ${body.html}
+    </article>${tocAside(body.toc, false)}
+    </div>${related(p, pages)}
   </main>
 ${footer(parts, pages)}
 </body>
@@ -468,10 +465,10 @@ ${footer(parts, pages)}
 }
 
 function notFoundPage(pages, parts) {
-  const p = { slug: '404', path: '/tools/404.html', type: 'hub', title: 'Page not found | MarkDrift by UptoSolve', description: 'This page does not exist. The MarkDrift watermark tools are all still here.' };
+  const p = { slug: '404', path: BASE + '404.html', type: '404', title: 'Page not found | MarkDrift by UptoSolve', description: 'This page does not exist. The MarkDrift watermark tools are all still here.' };
   const tools = pages.filter((q) => q.type === 'tool');
   const guides = pages.filter((q) => q.type === 'guide');
-  const hub = pages.find((q) => q.type === 'hub');
+  const home = pages.find((q) => q.main);
   return `${head(p, pages, { noindex: true })}
 <body class="page-article page-404">
   ${header(parts)}
@@ -489,7 +486,7 @@ function notFoundPage(pages, parts) {
       <h2 id="guides-h">Or read a guide</h2>
       ${linkList(guides)}
     </section>` : ''}
-    ${hub ? `<p><a class="btn ghost" href="${hub.path}">See all tools</a></p>` : ''}
+    <p class="actions">${home ? `<a class="btn primary" href="${home.path}">Open MarkDrift</a>` : ''}<a class="btn ghost" href="${HUB}">All free tools</a></p>
   </main>
 ${footer(parts, pages)}
 </body>
@@ -513,8 +510,8 @@ export function buildPages({ quiet = false } = {}) {
     fs.writeFileSync(file, html);
   };
   for (const p of pages) {
-    const rel = p.path.replace(/^\/tools\//, '') + 'index.html';
-    const html = p.type === 'tool' ? toolPage(p, pages, parts) : p.type === 'guide' ? guidePage(p, pages, parts) : hubPage(p, pages, parts);
+    const rel = p.path.slice(BASE.length) + 'index.html';
+    const html = p.type === 'tool' ? toolPage(p, pages, parts) : guidePage(p, pages, parts);
     write(rel, html);
   }
   write('404.html', notFoundPage(pages, parts));

@@ -31,6 +31,7 @@ export const ICONS = {
     '<path d="M6 7l.8 11.2a2 2 0 0 0 2 1.8h6.4a2 2 0 0 0 2-1.8L18 7"/>' +
     '<path d="M10 11v5"/><path d="M14 11v5"/>',
   'chevron-down': '<path d="M6 9.5l6 6 6-6"/>',
+  'arrow-up': '<path d="M12 19V5"/><path d="M6.5 10.5 12 5l5.5 5.5"/>',
   shuffle:
     '<path d="M4 7h2.5c2 0 3 1 4 2.5l3 5c1 1.5 2 2.5 4 2.5H20"/>' +
     '<path d="M4 17h2.5c2 0 3-1 4-2.5l3-5c1-1.5 2-2.5 4-2.5H20"/>' +

@@ -3,16 +3,16 @@ import fs from 'node:fs';
 import path from 'node:path';
 
 // The site is a set of static pages generated from content/ by scripts/build-pages.mjs
-// into site/ (see SITE-PLAN.md). Vite serves and builds site/ as a multi-page app under /tools/.
+// into site/ (see SITE-PLAN.md). Vite serves and builds site/ as a multi-page app under /tools/watermark/.
 //
-//   npm run dev    -> http://localhost:5188/tools/  (a tool page: /tools/watermark-video/)
-//   npm run build  -> dist/tools/...  (dist/ is the folder that gets deployed)
+//   npm run dev    -> http://localhost:5188/tools/watermark/  (another page: /tools/watermark/moving/)
+//   npm run build  -> dist/tools/watermark/...  (dist/ is the folder that gets deployed)
 const ROOT = import.meta.dirname;
 const SITE = path.join(ROOT, 'site');
 const DIST = path.join(ROOT, 'dist');
 
 // Dev-only helper so automated browser tests can save exported files to disk.
-// It is never part of the production build. Both endpoints sit at the server root, outside /tools/.
+// It is never part of the production build. Both endpoints sit at the server root, outside the base.
 const saveEndpoint = {
   name: 'markdrift-test-save',
   apply: 'serve',
@@ -47,14 +47,14 @@ function pageInputs() {
   for (const rel of fs.readdirSync(SITE, { recursive: true })) {
     const file = String(rel).replace(/\\/g, '/');
     if (!file.endsWith('.html')) continue;
-    const name = file === 'index.html' ? 'hub' : file.replace(/\/index\.html$|\.html$/, '').replace(/\//g, '-');
+    const name = file === 'index.html' ? 'main' : file.replace(/\/index\.html$|\.html$/, '').replace(/\//g, '-');
     inputs[name] = path.join(SITE, file);
   }
   return inputs;
 }
 
 // Build extras: start from an empty dist/, write the sitemap the generator prepared,
-// and move Cloudflare's _headers file to the deploy root (its paths already include /tools/).
+// and move Cloudflare's _headers file to the deploy root (its paths already include the base).
 const siteExtras = {
   name: 'markdrift-site-extras',
   apply: 'build',
@@ -69,7 +69,7 @@ const siteExtras = {
     if (fs.existsSync(sitemap)) this.emitFile({ type: 'asset', fileName: 'sitemap.xml', source: fs.readFileSync(sitemap, 'utf8') });
   },
   closeBundle() {
-    const headers = path.join(DIST, 'tools', '_headers');
+    const headers = path.join(DIST, 'tools', 'watermark', '_headers');
     if (fs.existsSync(headers)) fs.renameSync(headers, path.join(DIST, '_headers'));
     const redirects = path.join(SITE, '.meta', '_redirects');
     if (fs.existsSync(redirects)) fs.copyFileSync(redirects, path.join(DIST, '_redirects'));
@@ -78,7 +78,7 @@ const siteExtras = {
 
 export default defineConfig({
   root: SITE,
-  base: '/tools/',
+  base: '/tools/watermark/',
   publicDir: path.join(ROOT, 'public'),
   appType: 'mpa',
   // pages live in site/, the app code stays in src/: "/src/..." in a page means <project>/src/...
@@ -88,7 +88,7 @@ export default defineConfig({
   preview: { port: 5189, strictPort: true },
   build: {
     target: 'es2022',
-    outDir: path.join(DIST, 'tools'),
+    outDir: path.join(DIST, 'tools', 'watermark'),
     emptyOutDir: true,
     rollupOptions: { input: pageInputs() },
   },

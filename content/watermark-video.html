@@ -1,12 +1,27 @@
 <h2>Put your name on a video before someone else posts it</h2>
-<p>MarkDrift adds your name or logo to a video for free. Type your name or @handle, drop in a video, and you get back an MP4 with your mark in every frame. The tool above does the whole job inside this browser tab. Your video never goes to a server, you don't make an account, and the file that comes back carries your mark and nothing else.</p>
-<p>It opens on the "Hardest to remove" style: faint copies of your mark spread over the whole frame, plus one clear copy that drifts around. That's the style we'd use for anything posted publicly, because a mark parked in a corner is the first thing a reposter crops off. If you only want a neat logo in one spot, switch to "Corner". It takes the same few clicks.</p>
+<p>MarkDrift is a free, open-source (MIT) watermark tool by UptoSolve that adds moving, tiled or corner watermarks to videos and photos, one file or a whole batch, entirely in your browser with nothing uploaded.</p>
+<p>Type your name or @handle, drop in a video, and you get back an MP4 with your mark in every frame. The tool above does the whole job inside this browser tab. Your video never goes to a server, you don't make an account, and the file that comes back carries your mark and nothing else.</p>
+<p>It opens on the "Moving" style: one clear copy of your mark that glides around the frame and bounces off the edges. It's easy to read, and there's no corner for a reposter to crop off, so it's the one we'd use for anything posted publicly. If you only want a neat logo in one spot, switch to "Corner". It takes the same few clicks.</p>
+<p>We built it for creators and small shops who post a lot of short video and want their name on every clip. The tools we looked at first either charged credits, added their own watermark, or made you upload your files. MarkDrift charges no credits, adds no watermark of its own and never uploads your files.</p>
+
+<h2>MarkDrift at a glance</h2>
+<ul>
+<li><strong>Price:</strong> free, with no account and no sign-up.</li>
+<li><strong>Upload:</strong> none. Videos and photos are processed by your browser on your own device.</li>
+<li><strong>Video in:</strong> MP4, MOV, WebM and MKV. <strong>Video out:</strong> H.264 MP4 (WebM if the browser can't make MP4).</li>
+<li><strong>Photos in:</strong> JPG, PNG and WebP. <strong>Out:</strong> the same format, or one ZIP for a batch.</li>
+<li><strong>Watermark:</strong> your text or a PNG, SVG, WebP or JPG logo.</li>
+<li><strong>Styles:</strong> Moving, Jumping, Corner, Tiled, and Hardest to remove (faint tiles plus a moving mark).</li>
+<li><strong>Batches:</strong> no limit on the number of files; vertical and landscape videos can be mixed.</li>
+<li><strong>Browsers:</strong> Chrome and Edge 94+, Safari 17+, Firefox 130+ on desktop.</li>
+<li><strong>Source code:</strong> open source under the MIT licence at <a href="https://github.com/uptosolve/markdrift">github.com/uptosolve/markdrift</a>.</li>
+</ul>
 
 <h2>How to add a watermark to a video</h2>
 <ol>
 <li>Click "Choose videos or photos" and pick your clip, or drag it anywhere onto the page. MP4, MOV, WebM and MKV all open.</li>
 <li>Under "Your watermark", leave "Text" selected and type your name or handle. Pick white, black, yellow or any colour you like. White with an outline reads well on most footage, and the outline is on from the start.</li>
-<li>Under "Style", keep "Hardest to remove", or choose "Moving", "Tiled", "Jumping" or "Corner". Press play on the preview to watch what each one does.</li>
+<li>Under "Style", keep "Moving", or choose "Jumping", "Corner", "Tiled" or "Hardest to remove". Press play on the preview to watch what each one does.</li>
 <li>Under "Size and strength", choose Small, Medium or Large, then drag "How visible" until the mark is easy to read but doesn't take over the shot.</li>
 <li>Open "More options" only if you need it. That's where the font, angle, speed and "Video quality" live. "Keep original quality" is the default.</li>
 <li>Click "Add watermark and download". The new file goes to your Downloads with "-watermarked" added to the name, so your original stays untouched.</li>
@@ -19,11 +34,21 @@
 <p>Phone footage stored with rotation info comes out the right way up, with the mark straight on top. Vertical and landscape clips both work, and the mark is sized against the short side of the frame, so Medium looks like Medium on either.</p>
 <p>Speed depends on your device, since your device does the work. In our own test, a 3-minute 1080p clip took about 19 seconds in Chrome on a mid-range laptop. A newer machine may be quicker. A phone will be slower. Files over 400 MB are written straight to disk in Chrome and Edge, so a long video doesn't fill up memory.</p>
 
-<h2>When to use a covering style, and when a corner is enough</h2>
-<p>Use "Hardest to remove" or "Tiled" when the video itself is what people come for: a recipe, a tutorial, a product demo, a clip that might travel. Those get downloaded and reposted, and a mark spread across the frame survives a crop.</p>
-<p>A "Corner" mark is fine when you care more about branding than protection. Think of a client deliverable, an internal video, or a paid ad where a clean logo matters. It's easy to read and stays out of the way. It is also easy to crop, and on Reels, TikTok and Shorts the bottom corners sit right under the app's buttons and caption. Our <a href="/tools/guides/watermark-safe-zones/">guide to watermark safe zones</a> shows which parts of the frame get covered.</p>
+<h2>Which style to pick</h2>
+<p>"Moving" or "Jumping" suits most videos posted online. The mark is always readable, and because it doesn't sit still, a crop can't take it out.</p>
+<p>A "Corner" mark is fine when you care more about branding than protection. Think of a client deliverable, an internal video, or a paid ad where a clean logo matters. It's easy to read and stays out of the way. It is also easy to crop, and on Reels, TikTok and Shorts the bottom corners sit right under the app's buttons and caption. Our <a href="/tools/watermark/guides/watermark-safe-zones/">guide to watermark safe zones</a> shows which parts of the frame get covered.</p>
+<p>"Tiled" and "Hardest to remove" cover the whole frame with faint copies. They're worth it when the video itself is the valuable part, like a paid course clip or stock footage, and you don't mind a busier picture.</p>
 <p>No visible watermark is impossible to remove. Moving and tiled marks make removal slower and messier, which is often enough to put off someone who just wants a free video to post.</p>
-<p>Got more than one clip? The same tool takes a whole batch. See <a href="/tools/batch-watermark-videos/">watermarking many videos at once</a>.</p>
+
+<h2>Other ways to use it</h2>
+<p>Each page below opens the same tool, set up for a different job, with its own how-to underneath.</p>
+<ul>
+<li><a href="/tools/watermark/moving/">Moving watermark maker</a>: a mark that glides, bounces or jumps around the frame, so a crop can't remove it.</li>
+<li><a href="/tools/watermark/batch/">Watermark many videos at once</a>: one setting for a whole folder of Reels or TikToks, vertical and landscape mixed.</li>
+<li><a href="/tools/watermark/photos/">Watermark photos</a>: tiled or corner marks on JPG, PNG and WebP, with batches returned as a ZIP.</li>
+<li><a href="/tools/watermark/logo/">Add a logo to a video</a>: a PNG, SVG, WebP or JPG logo in a corner, turned white if you like.</li>
+</ul>
+<p>And three guides: <a href="/tools/watermark/guides/stop-reposting-videos/">how to stop people reposting your videos</a>, <a href="/tools/watermark/guides/watermark-safe-zones/">where to put a watermark on Reels, TikTok and Shorts</a>, and <a href="/tools/watermark/guides/free-video-watermark-tools-compared/">free video watermark tools compared</a>, which includes where MarkDrift falls short.</p>
 
 <h2>Questions people ask</h2>
 <details>

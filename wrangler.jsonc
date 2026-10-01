@@ -1,4 +1,6 @@
-// Deploys the built site (dist/) as a static-assets-only Worker on uptosolve.com/tools.
+// Deploys the built site (dist/) as a static-assets-only Worker on uptosolve.com/tools/watermark.
+// It owns only this folder. uptosolve.com/tools/ itself is the separate tools hub (ARCHITECTURE.md);
+// Cloudflare sends a request to the most specific matching route, so the two never overlap.
 // Nothing runs on the server: requests are served straight from the uploaded files.
 //   npm run deploy
 {
@@ -10,8 +12,8 @@
     "not_found_handling": "404-page"
   },
   "routes": [
-    { "pattern": "uptosolve.com/tools", "zone_name": "uptosolve.com" },
-    { "pattern": "uptosolve.com/tools/*", "zone_name": "uptosolve.com" }
+    { "pattern": "uptosolve.com/tools/watermark", "zone_name": "uptosolve.com" },
+    { "pattern": "uptosolve.com/tools/watermark/*", "zone_name": "uptosolve.com" }
   ],
   "workers_dev": false,
   "preview_urls": false

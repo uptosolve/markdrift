@@ -32,7 +32,7 @@ async function shot(name, { vp = DESKTOP, files = [], exporting = false, scroll 
     const t = document.querySelector('[data-key=text]');
     t.value = '@abdulla_al_maruf';
     t.dispatchEvent(new Event('input', { bubbles: true }));
-    document.querySelector('input[value=combo]').click();
+    document.querySelector('input[value=bounce]').click();
     if (!files.length) return;
     const ld = async ([p, type]) => new File([await (await fetch('/__media?name=' + p)).blob()], p, { type });
     await md.handleFiles(await Promise.all(files.map(ld)));

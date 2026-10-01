@@ -88,8 +88,8 @@ function checkFile(out) {
 buildPages({ quiet: true });
 const server = await createServer({ configFile: path.join(root, 'vite.config.js'), logLevel: 'error', server: { port: 5199, strictPort: false } });
 await server.listen();
-// the app runs on every tool page; the main one is /tools/watermark-video/
-const url = new URL('watermark-video/', server.resolvedUrls.local[0]).href;
+// the app runs on every tool page; the main one is /tools/watermark/ itself
+const url = server.resolvedUrls.local[0];
 // suite.js lives outside the site root (site/), so the page loads it through Vite's /@fs/ route
 const suiteUrl = encodeURI(server.config.base + '@fs/' + path.join(root, 'tests/e2e/suite.js').split(path.sep).join('/').replace(/^\//, ''));
 let failed = 0;

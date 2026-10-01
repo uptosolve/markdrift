@@ -73,14 +73,14 @@ for (const p of pages) {
   if (!row.jsonld.length) bad(`${p.path}: no JSON-LD`);
   // every link to another page of the site must resolve
   for (const [, href] of html.matchAll(/href="(\/tools\/[^"#]*)"/g)) {
-    if (/\.(css|js|svg|woff2|png)$/.test(href)) continue;
+    if (/\.(css|js|svg|woff2|png)$/.test(href) || href === '/tools/') continue;
     if (!pages.some((q) => q.path === href)) bad(`${p.path}: links to ${href}, which is not a page`);
   }
   rows.push(row);
 }
 
 // sitemap
-const sm = await fetch(server.url + '/tools/sitemap.xml');
+const sm = await fetch(server.url + '/tools/watermark/sitemap.xml');
 const smText = await sm.text();
 const locs = [...smText.matchAll(/<loc>([^<]+)<\/loc>/g)].map((m) => m[1]).sort();
 const want = pages.map((p) => ORIGIN + p.path).sort();
@@ -89,7 +89,7 @@ if (!sitemapOk) bad(`sitemap lists ${locs.length} URLs, expected exactly the ${w
 for (const p of pages) if (!smText.includes(`<loc>${ORIGIN + p.path}</loc>\n    <lastmod>${p.updated}</lastmod>`)) bad(`sitemap: ${p.path} has no lastmod ${p.updated}`);
 
 // 404
-const miss = await fetch(server.url + '/tools/this-page-does-not-exist-' + Math.random().toString(36).slice(2) + '/');
+const miss = await fetch(server.url + '/tools/watermark/this-page-does-not-exist-' + Math.random().toString(36).slice(2) + '/');
 const missText = await miss.text();
 const notFoundOk = miss.status === 404 && missText.includes("This page isn't here") && missText.includes('noindex');
 if (!notFoundOk) bad(`bad path returned ${miss.status} without the 404 page`);
@@ -110,7 +110,7 @@ else {
     await page.evaluate(() => document.fonts.ready);
     return page;
   };
-  for (const p of [...pages, { path: '/tools/404.html', type: '404', slug: '404' }]) {
+  for (const p of [...pages, { path: '/tools/watermark/404.html', type: '404', slug: '404' }]) {
     const phone = await open(local(p.path), { width: 390, height: 844, deviceScaleFactor: 2, isMobile: true, hasTouch: true });
     const over = await phone.evaluate(() => document.documentElement.scrollWidth - document.documentElement.clientWidth);
     if (over > 0) bad(`${p.path}: ${over}px sideways overflow at 390px`);
@@ -130,7 +130,7 @@ else {
     layout.push({ path: p.path, overflow390: over, fold });
   }
   if (SHOTS) {
-    const shots = [['site-tool-video', '/tools/watermark-video/'], ['site-tool-photos', '/tools/watermark-photos/'], ['site-guide', pages.find((p) => p.type === 'guide')?.path]];
+    const shots = [['site-tool-video', '/tools/watermark/'], ['site-tool-photos', '/tools/watermark/photos/'], ['site-guide', pages.find((p) => p.type === 'guide')?.path]];
     for (const [name, p] of shots) {
       if (!p) continue;
       for (const [suffix, vp] of [['desktop', { width: 1440, height: 900 }], ['phone', { width: 390, height: 844, deviceScaleFactor: 2, isMobile: true, hasTouch: true }]]) {

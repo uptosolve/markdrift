@@ -71,7 +71,7 @@
       "soft": {
         "role": "neutral",
         "displayName": "Soft Ink",
-        "canonical": "#63635a",
+        "canonical": "#52524b",
         "oklch": "oklch(49.7% 0.014 106.9)",
         "tonalRamp": [
           "#0b0b08",
@@ -442,7 +442,7 @@
       "kind": "card",
       "refersTo": "checkout",
       "description": "Band footer of the order panel: summary and progress with a yellow fill and ink edge.",
-      "html": "<div class=\"ds-checkout\"><p>4 videos (0:31) · Hardest to remove · saves to a folder you pick</p><div class=\"ds-track\"><i></i></div><div class=\"ds-row\">2 of 4 saved</div></div>",
+      "html": "<div class=\"ds-checkout\"><p>4 videos (0:31) · Moving · saves to a folder you pick</p><div class=\"ds-track\"><i></i></div><div class=\"ds-row\">2 of 4 saved</div></div>",
       "css": ".ds-checkout{width:360px;padding:12px 20px 16px;background:var(--band);border:1px solid var(--line);border-radius:0 0 18px 18px;display:flex;flex-direction:column;gap:10px;font:400 0.8125rem/1.45 var(--font);color:var(--ink)}.ds-checkout p{margin:0}.ds-track{height:8px;background:var(--hair);border-radius:99px;overflow:hidden;box-shadow:inset 0 0 0 1px var(--line)}.ds-track i{display:block;height:100%;width:55%;background:var(--accent);border-radius:99px;box-shadow:inset 0 0 0 1px rgba(35,35,30,.35)}.ds-row{color:var(--soft)}"
     },
     {

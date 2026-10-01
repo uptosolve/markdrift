@@ -15,7 +15,7 @@ export const DEFAULTS = {
   rotation: 0,           // degrees, for single marks
   margin: 3,             // % of short side
 
-  mode: 'combo',         // fixed | bounce | jump | tile | combo
+  mode: 'bounce',        // fixed | bounce | jump | tile | combo
   position: 'br',
   speed: 4,              // 1..10
   interval: 3,           // seconds, jump mode

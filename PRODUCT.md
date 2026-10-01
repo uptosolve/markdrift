@@ -27,7 +27,7 @@ The only free tool that combines: moving watermarks (bounce, jump, tile, tile + 
 - Laptop in Chrome or Edge for batches. Phone for one or two clips *(inferred)*.
 - Files come straight from a phone camera or an editing app: MP4/MOV, vertical and landscape, often with rotation metadata.
 - Chrome/Edge can save a batch into a chosen folder. Other browsers download files one by one.
-- Hosting: static files on a Cloudflare Worker at `uptosolve.com/tools/`.
+- Hosting: static files on a Cloudflare Worker at `uptosolve.com/tools/watermark/` (since 1 October 2026; `/tools/` itself lists all UptoSolve tools).
 
 ## Capabilities and Constraints
 
@@ -44,7 +44,7 @@ The only free tool that combines: moving watermarks (bounce, jump, tile, tile + 
 ## Brand Commitments
 
 - Part of the UptoSolve brand ("by UptoSolve"). The tool keeps its own name, MarkDrift *(working name; the owner has not chosen between it and "UptoSolve Watermark")*.
-- UptoSolve's visual identity (from the uptosolve.com homepage styles): white page, `#F7F7F5` band, ink `#23231E`, soft text `#63635A`, lines `#E2E1DB`, yellow accent `#FCEC45`, the Google Sans Flex font, corner radii 10 / 18 / 99 px (pill buttons).
+- UptoSolve's visual identity (from the uptosolve.com homepage styles): white page, `#F7F7F5` band, ink `#23231E`, soft text `#52524B` (darkened from `#63635A` on 1 October 2026 for contrast), lines `#E2E1DB`, yellow accent `#FCEC45`, the Google Sans Flex font, corner radii 10 / 18 / 99 px (pill buttons).
 - Voice: plain, human, specific. No em dashes, no hype words, no invented facts.
 
 ## Evidence on Hand

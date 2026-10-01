@@ -4,5 +4,5 @@ contact_links:
     url: https://github.com/uptosolve/markdrift/security/advisories/new
     about: Please report security issues privately, not in a public issue.
   - name: Use the tool
-    url: https://uptosolve.com/tools/watermark-video/
+    url: https://uptosolve.com/tools/watermark/
     about: The live version of MarkDrift.

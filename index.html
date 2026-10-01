@@ -20,12 +20,13 @@
 </head>
 <body>
   <header class="bar">
-    <a class="brand" href="/" aria-label="MarkDrift by UptoSolve, home">
+    <a class="brand" href="/tools/watermark/" aria-label="MarkDrift by UptoSolve, home">
       <svg class="brand-mark" viewBox="0 0 28 20" aria-hidden="true" focusable="false"><rect x="1" y="1" width="26" height="18" rx="4" fill="none" stroke="currentColor" stroke-width="2"/><rect class="brand-dot" x="15" y="11" width="9" height="5" rx="2"/></svg>
       <span class="brand-name">MarkDrift</span>
       <span class="brand-by">by UptoSolve</span>
     </a>
     <p class="bar-note"><span data-icon="lock"></span>Runs on this device. Nothing is uploaded.</p>
+    <a class="bar-all" href="/tools/">All free tools</a>
   </header>
 
   <main class="shop">
@@ -117,20 +118,10 @@
         <section class="step" aria-labelledby="s2">
           <h3 id="s2"><span class="n">2</span>Style</h3>
           <div class="styles" role="radiogroup" aria-label="Style">
-            <label class="style"><input type="radio" name="mode" value="combo" data-key="mode" />
-              <span class="style-row">
-                <svg viewBox="0 0 48 30" aria-hidden="true"><rect class="mf" x=".5" y=".5" width="47" height="29" rx="4"/><g class="faint"><rect class="mk" x="4" y="5" width="8" height="2" rx="1"/><rect class="mk" x="20" y="5" width="8" height="2" rx="1"/><rect class="mk" x="36" y="5" width="8" height="2" rx="1"/><rect class="mk" x="12" y="14" width="8" height="2" rx="1"/><rect class="mk" x="28" y="14" width="8" height="2" rx="1"/><rect class="mk" x="4" y="23" width="8" height="2" rx="1"/><rect class="mk" x="20" y="23" width="8" height="2" rx="1"/><rect class="mk" x="36" y="23" width="8" height="2" rx="1"/></g><g class="bx"><rect class="mk by" x="3" y="3" width="12" height="5" rx="1.5"/></g></svg>
-                <span class="style-text"><b>Hardest to remove <em>Recommended</em></b><small>Faint marks across the frame, plus one clear mark that moves.</small></span>
-              </span></label>
             <label class="style"><input type="radio" name="mode" value="bounce" data-key="mode" />
               <span class="style-row">
                 <svg viewBox="0 0 48 30" aria-hidden="true"><rect class="mf" x=".5" y=".5" width="47" height="29" rx="4"/><g class="bx"><rect class="mk by" x="3" y="3" width="12" height="5" rx="1.5"/></g></svg>
-                <span class="style-text"><b>Moving</b><small>Glides around and bounces off the edges.</small></span>
-              </span></label>
-            <label class="style"><input type="radio" name="mode" value="tile" data-key="mode" />
-              <span class="style-row">
-                <svg viewBox="0 0 48 30" aria-hidden="true"><rect class="mf" x=".5" y=".5" width="47" height="29" rx="4"/><g class="tl"><rect class="mk" x="-4" y="4" width="9" height="3" rx="1"/><rect class="mk" x="14" y="4" width="9" height="3" rx="1"/><rect class="mk" x="32" y="4" width="9" height="3" rx="1"/><rect class="mk" x="5" y="13" width="9" height="3" rx="1"/><rect class="mk" x="23" y="13" width="9" height="3" rx="1"/><rect class="mk" x="41" y="13" width="9" height="3" rx="1"/><rect class="mk" x="-4" y="22" width="9" height="3" rx="1"/><rect class="mk" x="14" y="22" width="9" height="3" rx="1"/><rect class="mk" x="32" y="22" width="9" height="3" rx="1"/></g></svg>
-                <span class="style-text"><b>Tiled</b><small>Repeats across the whole frame, so cropping can't cut it out.</small></span>
+                <span class="style-text"><b>Moving <em>Recommended</em></b><small>Glides around the frame, so a crop can't cut it out.</small></span>
               </span></label>
             <label class="style"><input type="radio" name="mode" value="jump" data-key="mode" />
               <span class="style-row">
@@ -141,6 +132,16 @@
               <span class="style-row">
                 <svg viewBox="0 0 48 30" aria-hidden="true"><rect class="mf" x=".5" y=".5" width="47" height="29" rx="4"/><rect class="mk" x="32" y="21" width="12" height="5" rx="1.5"/></svg>
                 <span class="style-text"><b>Corner</b><small>Stays in one place. Easy to read, but easy to crop.</small></span>
+              </span></label>
+            <label class="style"><input type="radio" name="mode" value="tile" data-key="mode" />
+              <span class="style-row">
+                <svg viewBox="0 0 48 30" aria-hidden="true"><rect class="mf" x=".5" y=".5" width="47" height="29" rx="4"/><g class="tl"><rect class="mk" x="-4" y="4" width="9" height="3" rx="1"/><rect class="mk" x="14" y="4" width="9" height="3" rx="1"/><rect class="mk" x="32" y="4" width="9" height="3" rx="1"/><rect class="mk" x="5" y="13" width="9" height="3" rx="1"/><rect class="mk" x="23" y="13" width="9" height="3" rx="1"/><rect class="mk" x="41" y="13" width="9" height="3" rx="1"/><rect class="mk" x="-4" y="22" width="9" height="3" rx="1"/><rect class="mk" x="14" y="22" width="9" height="3" rx="1"/><rect class="mk" x="32" y="22" width="9" height="3" rx="1"/></g></svg>
+                <span class="style-text"><b>Tiled</b><small>Repeats across the whole frame, so cropping can't cut it out.</small></span>
+              </span></label>
+            <label class="style"><input type="radio" name="mode" value="combo" data-key="mode" />
+              <span class="style-row">
+                <svg viewBox="0 0 48 30" aria-hidden="true"><rect class="mf" x=".5" y=".5" width="47" height="29" rx="4"/><g class="faint"><rect class="mk" x="4" y="5" width="8" height="2" rx="1"/><rect class="mk" x="20" y="5" width="8" height="2" rx="1"/><rect class="mk" x="36" y="5" width="8" height="2" rx="1"/><rect class="mk" x="12" y="14" width="8" height="2" rx="1"/><rect class="mk" x="28" y="14" width="8" height="2" rx="1"/><rect class="mk" x="4" y="23" width="8" height="2" rx="1"/><rect class="mk" x="20" y="23" width="8" height="2" rx="1"/><rect class="mk" x="36" y="23" width="8" height="2" rx="1"/></g><g class="bx"><rect class="mk by" x="3" y="3" width="12" height="5" rx="1.5"/></g></svg>
+                <span class="style-text"><b>Hardest to remove</b><small>Faint copies across the whole frame, plus one that moves. Busier to look at.</small></span>
               </span></label>
           </div>
           <div class="place" data-show="fixed">
@@ -249,7 +250,7 @@
       </div>
 
       <div class="checkout empty" id="checkout">
-        <p class="summary" id="summary"><span id="sumFiles">No files yet</span> · <span id="sumStyle">Hardest to remove</span> · <span>saves to <span id="sumWhere">your Downloads</span></span></p>
+        <p class="summary" id="summary"><span id="sumFiles">No files yet</span> · <span id="sumStyle">Moving</span> · <span>saves to <span id="sumWhere">your Downloads</span></span></p>
         <button class="btn primary big idle" id="exportBtn" type="button">Choose files to start</button>
         <div class="progress" id="progress" hidden>
           <div class="bar-track"><i id="bar"></i></div>

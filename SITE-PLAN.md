@@ -1,5 +1,7 @@
 # Launch plan: MarkDrift on uptosolve.com
 
+> **Moved on 1 October 2026.** MarkDrift now lives at `/tools/watermark/` and `/tools/` is a separate hub that lists every UptoSolve tool. Old addresses 301 to the new ones. The main page (`/tools/watermark/`, slug `watermark-video`, `"main": true`) replaced both the old hub and the old video page.
+
 Shared spec for everyone working on the launch. Last updated 2026-10-01.
 
 ## Goals
@@ -18,20 +20,19 @@ Shared spec for everyone working on the launch. Last updated 2026-10-01.
 
 ## URL map
 
-All canonical URLs are absolute: `https://uptosolve.com/tools/<path>/` (with a trailing slash).
+All canonical URLs are absolute: `https://uptosolve.com/tools/watermark/<path>/` (with a trailing slash).
 
 | Path | Type | Target search | Tool preset |
 |---|---|---|---|
-| `/tools/` | hub | "free tools uptosolve" (brand) | none; lists the tools |
-| `/tools/watermark-video/` | tool (primary) | add watermark to video online free / no sign up | tab video, mode combo |
-| `/tools/moving-watermark/` | tool | moving watermark maker, moving watermark on video, animated watermark | tab video, mode bounce |
-| `/tools/batch-watermark-videos/` | tool | batch / bulk watermark videos, watermark multiple videos at once | tab video, mode combo |
-| `/tools/watermark-photos/` | tool | watermark photos online free, batch watermark photos, tiled watermark | tab image, mode tile |
-| `/tools/add-logo-to-video/` | tool | add logo to video online free without watermark | tab video, kind image, mode fixed, position br |
-| `/tools/guides/stop-reposting-videos/` | guide | how to stop people reposting your reels/tiktoks | none (links to tools) |
-| `/tools/guides/watermark-safe-zones/` | guide | where to put a watermark on reels / tiktok / shorts | none |
-| `/tools/guides/free-video-watermark-tools-compared/` | guide | free video watermark tool without watermark, kapwing vs canva watermark | none |
-| `/tools/404.html` | 404 | | |
+| `/tools/watermark/` | tool (primary) | add watermark to video online free / no sign up | tab video, mode bounce |
+| `/tools/watermark/moving/` | tool | moving watermark maker, moving watermark on video, animated watermark | tab video, mode bounce |
+| `/tools/watermark/batch/` | tool | batch / bulk watermark videos, watermark multiple videos at once | tab video, mode bounce |
+| `/tools/watermark/photos/` | tool | watermark photos online free, batch watermark photos, tiled watermark | tab image, mode tile |
+| `/tools/watermark/logo/` | tool | add logo to video online free without watermark | tab video, kind image, mode fixed, position br |
+| `/tools/watermark/guides/stop-reposting-videos/` | guide | how to stop people reposting your reels/tiktoks | none (links to tools) |
+| `/tools/watermark/guides/watermark-safe-zones/` | guide | where to put a watermark on reels / tiktok / shorts | none |
+| `/tools/watermark/guides/free-video-watermark-tools-compared/` | guide | free video watermark tool without watermark, kapwing vs canva watermark | none |
+| `/tools/watermark/404.html` | 404 | | |
 
 Every tool page runs the same app with a different preset and its own content below the tool. They must differ in real substance: each has its own intro, its own how-to for its case, and its own FAQ questions. No near-duplicate pages.
 
